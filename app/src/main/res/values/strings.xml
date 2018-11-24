@@ -5,4 +5,7 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Not saved because it is empty.</string>
     <string name="sort">Sort</string>
+    <string name="a_z">A-Z</string>
+    <string name="price">Price</string>
+    <string name="todo">TODO</string>
 </resources>

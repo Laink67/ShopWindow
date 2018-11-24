@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menugroup1" >
+        <item
+            android:id="@+id/item_sort_a-z"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/a_z"/>
+        <item
+            android:id="@+id/item_sort_price"
+            android:title="@string/price"/>
+    </group>
+</menu>

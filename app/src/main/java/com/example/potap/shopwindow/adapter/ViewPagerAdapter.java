@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +18,13 @@ import java.util.ArrayList;
 public class ViewPagerAdapter extends PagerAdapter {
 
     private Activity activity;
-    ArrayList<String> imagesLink;
+    private ArrayList<String> imagesLink;
     private LayoutInflater mInflater;
 
     public ViewPagerAdapter(Activity activity, ArrayList<String> imagesLink) {
         this.activity = activity;
         this.imagesLink = imagesLink;
+        this.mInflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -41,10 +40,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        mInflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert mInflater != null;
         View itemView = mInflater.inflate(R.layout.viewpager_item,container,false);
         ImageView imageView;
-        imageView = itemView.findViewById(R.id.imageInfo);
+        imageView = itemView.findViewById(R.id.image_info);
 
         DisplayMetrics dis = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dis);
@@ -56,7 +55,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                     .load(imagesLink.get(position))
                     .into(imageView);
         }
-        catch (Exception ex){
+        catch (Exception ignored){
 
         }
         container.addView(itemView);

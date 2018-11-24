@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.potap.shopwindow.activities.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:background="@android:color/white"
+        tools:listitem="@layout/recyclerview_item" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include
-    android:id="@+id/include"
-        layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
         android:visibility="invisible"
@@ -33,22 +24,19 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp" />
 
-    <Button
-        android:id="@+id/btSortName"
+    <ImageButton
+        android:id="@+id/menu_sort"
         android:layout_width="60dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="310dp"
         android:layout_marginLeft="120dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/white"
+        android:contentDescription="@string/todo"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_sort_black_24dp"
         android:text="@string/sort"
-        android:layout_marginStart="120dp" />
+        />
 
-    <Button
-        android:id="@+id/btSortPrice"
-        android:layout_width="60dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="240dp"
-        android:text="@string/sort"
-        android:layout_marginStart="240dp" />
 
 </android.support.design.widget.CoordinatorLayout>

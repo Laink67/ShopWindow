@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="13dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/view_pager"
         android:layout_width="350dp"
         android:layout_height="300dp"/>
 
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_pager"
+        android:layout_centerHorizontal="true"
+        app:dotsColor="@color/grey"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="15dp"
+        app:dotsSpacing="4dp"
+        app:dotsWidthFactor="2.5"
+        />
+
+    <LinearLayout
+        android:id="@+id/slider_dots"
+        android:layout_below="@+id/view_pager"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/textViewInfo"
+        android:id="@+id/text_view_info"
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/viewPager"
+        android:layout_toRightOf="@+id/view_pager"
         android:layout_marginTop="90dp"
         android:textSize="17sp"/>
 </RelativeLayout>

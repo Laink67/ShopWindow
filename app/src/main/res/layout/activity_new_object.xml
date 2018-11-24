@@ -4,6 +4,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="@color/bl"-->
+            <!--/>-->
+
+    <!--</android.support.design.widget.AppBarLayout>-->
+
     <EditText
         android:id="@+id/edit_object"
         android:layout_width="match_parent"
@@ -14,7 +28,8 @@
         android:padding="@dimen/small_padding"
         android:layout_marginBottom="@dimen/big_padding"
         android:layout_marginTop="@dimen/big_padding"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_save"

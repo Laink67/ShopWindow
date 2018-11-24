@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/parent_layout"
     android:padding="13dp"
+    android:elevation="2dp"
     android:foreground="?android:attr/selectableItemBackground">
 
 <de.hdodenhof.circleimageview.CircleImageView

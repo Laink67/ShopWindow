@@ -14,7 +14,7 @@ public class SneakersRepository {
     private LiveData<List<Sneakers>> mAllSneakers;
 
     public SneakersRepository(Application application) {
-        DataManger db = DataManger.getDatabase(application);
+        DataManager db = DataManager.getDatabase(application);
         mSneakersDao = db.sneakersDAO();
         mAllSneakers = mSneakersDao.getSneakers();
     }
@@ -25,14 +25,19 @@ public class SneakersRepository {
     }
 
     public void insert(Sneakers sneakers) {
-        new insertAsyncTask(mSneakersDao).execute(sneakers);
+        new InsertAsyncTask(mSneakersDao).execute(sneakers);
     }
 
-    private static class insertAsyncTask extends AsyncTask<Sneakers, Void, Void> {
+    public LiveData<List<Sneakers>> getSorted(String column) {
+        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName():mSneakersDao.getSortedByPrice();
+        return mAllSneakers;
+    }
+
+    private static class InsertAsyncTask extends AsyncTask<Sneakers, Void, Void> {
 
         private SneakersDAO mAsyncTaskDao;
 
-        insertAsyncTask(SneakersDAO dao) {
+        InsertAsyncTask(SneakersDAO dao) {
             mAsyncTaskDao = dao;
         }
 

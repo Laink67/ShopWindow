@@ -19,6 +19,12 @@ public interface SneakersDAO {
     @Insert
     void insert(Sneakers word);
 
+    @Query("SELECT * from sneakers ORDER BY price ASC")
+    LiveData<List<Sneakers>> getSortedByPrice();
+
+    @Query("SELECT * from sneakers ORDER BY name ASC")
+    LiveData<List<Sneakers>> getSortedByName();
+
     @Query("DELETE FROM sneakers")
     void deleteAll();
 }

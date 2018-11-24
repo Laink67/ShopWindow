@@ -21,10 +21,16 @@ public class SneakersViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Sneakers>> getAllSneakers() {
+        mAllSneakers = mRepository.getAllSneakers();
         return mAllSneakers;
     }
 
     public void insert(Sneakers sneakers) {
         mRepository.insert(sneakers);
+    }
+
+    public LiveData<List<Sneakers>> getSorted(String column) {
+        mAllSneakers = mRepository.getSorted(column);
+        return mAllSneakers;
     }
 }

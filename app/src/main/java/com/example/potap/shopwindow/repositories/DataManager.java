@@ -12,16 +12,16 @@ import com.example.potap.shopwindow.dbObjects.Sneakers;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
 @Database(entities = {Sneakers.class}, version = 1)
-public abstract class DataManger extends RoomDatabase {
+public abstract class DataManager extends RoomDatabase {
     public abstract SneakersDAO sneakersDAO();
 
-    private static volatile DataManger INSTANCE;
+    private static volatile DataManager INSTANCE;
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final SneakersDAO mDao;
 
-        PopulateDbAsync(DataManger db) {
+        PopulateDbAsync(DataManager db) {
             mDao = db.sneakersDAO();
         }
 
@@ -31,7 +31,7 @@ public abstract class DataManger extends RoomDatabase {
             mDao.deleteAll();
 
             Sneakers sneakers = new Sneakers(
-                    "Reebook",
+                    "Reebook Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара",
                     5000,
                     "Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара.",
                     "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
@@ -73,12 +73,12 @@ public abstract class DataManger extends RoomDatabase {
         }
     };
 
-    static DataManger getDatabase(final Context context) {
+    static DataManager getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (DataManger.class) {
+            synchronized (DataManager.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DataManger.class, "sneakers")
+                            DataManager.class, "sneakers")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
