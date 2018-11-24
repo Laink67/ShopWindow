@@ -4,13 +4,17 @@
     android:layout_height="wrap_content"
     android:id="@+id/parent_layout"
     android:padding="13dp"
-    android:elevation="2dp"
+    android:layout_marginTop="2dp"
+    android:background="@drawable/rect"
+    android:elevation="1.5dp"
     android:foreground="?android:attr/selectableItemBackground">
 
 <de.hdodenhof.circleimageview.CircleImageView
     android:layout_width="80dp"
     android:layout_height="80dp"
     android:id="@+id/image"
+    android:background="@drawable/oval"
+    android:elevation="3dp"
     android:src="@mipmap/ic_launcher"/>
 
     <TextView
@@ -18,9 +22,9 @@
         style="@style/word_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/image"
-        android:layout_toLeftOf="@+id/text_view_price"
-        android:layout_marginLeft="30dp"
+        android:layout_toEndOf="@id/image"
+        android:layout_toStartOf="@+id/text_view_price"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="23dp"
         android:textSize="17sp"
         android:textColor="@color/black"/>
@@ -35,6 +39,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
-        android:textSize="17sp"
+        android:textSize="20sp"
         android:textColor="@color/black"/>
 </RelativeLayout>

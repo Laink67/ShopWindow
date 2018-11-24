@@ -39,5 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/view_pager"
         android:layout_marginTop="90dp"
-        android:textSize="17sp"/>
+        android:textSize="17sp"
+        android:textColor="@color/grey"
+        android:layout_toEndOf="@+id/view_pager" />
 </RelativeLayout>

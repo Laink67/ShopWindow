@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
@@ -35,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
         ImageButton menuSort = findViewById(R.id.menu_sort);
-//        ImageButton btSortName = findViewById(R.id.button_sort_name);
-//        Button btSortPrice = findViewById(R.id.button_sort_price);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final SneakersListAdapter adapter = new SneakersListAdapter(this);
@@ -59,14 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btSortName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Update the cached copy of the sneakers in the adapter.
-//                adapter.getSorted("name");
-//            }
-//        });
-
         menuSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,66 +61,12 @@ public class MainActivity extends AppCompatActivity {
                 showPopup(v,adapter);
             }
         });
-        //Sort sneakers by name
-//        btSortName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mSneakersViewModel.getSorted("name").observe(MainActivity.this, new Observer<List<Sneakers>>() {
-        //                    @Override
-//                    public void onChanged(@Nullable final List<Sneakers> sneakers) {
-//                        // Update the cached copy of the sneakers in the adapter.
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//            }
-//        });
-
-        //Sort sneakers by price
-//        btSortPrice.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Update the cached copy of the sneakers in the adapter.
-//                adapter.getSorted("price");
-//            }
-//        });
-
-//        btSortPrice.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mSneakersViewModel.getSorted("price").observe(MainActivity.this, new Observer<List<Sneakers>>() {
-//                    @Override
-//                    public void onChanged(@Nullable final List<Sneakers> sneakers) {
-//                        // Update the cached copy of the sneakers in the adapter.
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//            }
-//        });
-
-        //Add object
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewSneakersActivity.class);
-                startActivityForResult(intent, NEW_SNEAKERS_ACTIVITY_REQUEST_CODE);
-            }
-        });
 
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == NEW_SNEAKERS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Sneakers sneakers = new Sneakers(data.getStringExtra(NewSneakersActivity.EXTRA_REPLY), 0, "", "", "", "");
-            mSneakersViewModel.insert(sneakers);
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
         }
-    }
 
     private void showPopup(View v, final SneakersListAdapter adapter) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -156,18 +89,5 @@ public class MainActivity extends AppCompatActivity {
         });
         popup.show();
     }
-
-
-//    private void getSorted(List<Sneakers> sneakers, final String column) {
-//        Collections.sort(sneakers, new Comparator<Sneakers>() {
-//            @Override
-//            public int compare(Sneakers o1, Sneakers o2) {
-//                if (column.equals("name"))
-//                    return o1.getName().compareTo(o2.getName());
-//                else
-//                    return o1.getPrice() - o2.getPrice();
-//            }
-//        });
-//    }
 }
 

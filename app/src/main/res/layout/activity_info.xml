@@ -8,6 +8,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="350dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="300dp">
     </android.support.v4.view.ViewPager>
 
@@ -19,7 +20,7 @@
         android:layout_centerHorizontal="true"
         app:dotsColor="@color/grey"
         app:dotsCornerRadius="8dp"
-        app:dotsSize="16dp"
+        app:dotsSize="10dp"
         app:dotsSpacing="4dp"
         app:dotsWidthFactor="2.5"
         />
@@ -31,5 +32,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="320dp"
         android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:textSize="15sp" />
 </RelativeLayout>
