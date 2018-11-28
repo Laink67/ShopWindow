@@ -24,10 +24,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int NEW_SNEAKERS_ACTIVITY_REQUEST_CODE = 1;
-
-    private SneakersViewModel mSneakersViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Get a new or existing ViewModel from the ViewModelProvider.
-        mSneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
+        SneakersViewModel mSneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
 
 
         // Add an observer on the LiveData returned by getAll.
@@ -57,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         menuSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Update the cached copy of the sneakers in the adapter.
                 showPopup(v,adapter);
             }
         });
