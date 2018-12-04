@@ -30,7 +30,7 @@ public class SneakersViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Sneakers>> getSorted(String column) {
-        mAllSneakers = mRepository.getSorted(column);
+        mAllSneakers = mRepository.sort(column);
         return mAllSneakers;
     }
 }

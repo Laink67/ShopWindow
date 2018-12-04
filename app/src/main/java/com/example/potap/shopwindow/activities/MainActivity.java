@@ -24,6 +24,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SneakersViewModel mSneakersViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Get a new or existing ViewModel from the ViewModelProvider.
-        SneakersViewModel mSneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
+         mSneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
 
 
         // Add an observer on the LiveData returned by getAll.
@@ -72,12 +74,26 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.item_sort_a_z:
-                        adapter.getSorted("name");
+                        {
+                        mSneakersViewModel.getSorted("name").observe(MainActivity.this, new Observer<List<Sneakers>>() {
+                            @Override
+                            public void onChanged(@Nullable List<Sneakers> sneakers) {
+                                adapter.setSneakers(sneakers);
+                            }
+                        });
                         return true;
+                    }
                     case R.id.item_sort_price:
-                        adapter.getSorted("price");
+                        {
+                        mSneakersViewModel.getSorted("price").observe(MainActivity.this, new Observer<List<Sneakers>>() {
+                            @Override
+                            public void onChanged(@Nullable List<Sneakers> sneakers) {
+                                adapter.setSneakers(sneakers);
+                            }
+                        });
                         return true;
-                    default:
+                    }
+                     default:
                         return false;
                 }
             }

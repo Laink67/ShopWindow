@@ -28,8 +28,18 @@ public class SneakersRepository {
         new InsertAsyncTask(mSneakersDao).execute(sneakers);
     }
 
-    public LiveData<List<Sneakers>> getSorted(String column) {
-        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName():mSneakersDao.getSortedByPrice();
+//    public LiveData<List<Sneakers>> getSorted(String column) {
+//        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName() : mSneakersDao.getSortedByPrice();
+//        return mAllSneakers;
+//    }
+
+    public LiveData<List<Sneakers>> sort(String column) {
+
+        if (column.equals("name"))
+            mAllSneakers = mSneakersDao.getSortedByName();
+        else
+            mAllSneakers = mSneakersDao.getSortedByPrice();
+
         return mAllSneakers;
     }
 

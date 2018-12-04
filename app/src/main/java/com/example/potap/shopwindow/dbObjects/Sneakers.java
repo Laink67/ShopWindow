@@ -5,8 +5,11 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 @Entity(tableName = "sneakers")
-public class Sneakers {
+public class Sneakers implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -48,6 +51,16 @@ public class Sneakers {
         this.thirdImage = thirdImage;
     }
 
+    public Sneakers(String name, int price,String description, ArrayList<String> imagesLinks) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.image = imagesLinks.get(0);
+        this.secondImage = imagesLinks.get(1);
+        this.thirdImage = imagesLinks.get(2);
+    }
+
+
     @NonNull
     public String getName() {
         return this.name;
@@ -73,4 +86,12 @@ public class Sneakers {
         return this.thirdImage;
     }
 
+    public ArrayList<String> getImagesLinks(){
+        ArrayList<String> images = new ArrayList<String>();
+        images.add(getImage());
+        images.add(getSecondImage());
+        images.add(getThirdImage());
+
+        return images;
+    }
 }

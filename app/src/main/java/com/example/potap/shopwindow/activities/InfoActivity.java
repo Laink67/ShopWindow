@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.ViewPagerAdapter;
+import com.example.potap.shopwindow.dbObjects.Sneakers;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity {
 
-    public static final String EXTRA_IMAGES = "imagesLink";
-    public static final String EXTRA_DESCRIPTION = "description";
+    public static final String EXTRA_OBJECTS = "SneakersObjects";
 
     private ArrayList<String> imagesLink = new ArrayList<String>();
 
@@ -31,8 +31,13 @@ public class InfoActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        imagesLink.addAll(intent.getStringArrayListExtra(EXTRA_IMAGES));
+        Sneakers sneakers = (Sneakers) bundle.getSerializable(EXTRA_OBJECTS);
+
+        imagesLink = sneakers.getImagesLinks();
+
+//        imagesLink.addAll(arr);
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         DotsIndicator dotsIndicator = findViewById(R.id.dots_indicator);
@@ -42,6 +47,6 @@ public class InfoActivity extends AppCompatActivity {
         dotsIndicator.setViewPager(viewPager);
 
         TextView textView = findViewById(R.id.text_view_info);
-        textView.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+        textView.setText(sneakers.getDescription());
     }
 }
