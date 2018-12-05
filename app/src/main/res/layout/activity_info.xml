@@ -5,8 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <include layout="@layout/info_toolbar"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
+        android:layout_below="@+id/info_toolbar"
         android:layout_width="350dp"
         android:layout_centerHorizontal="true"
         android:layout_height="300dp">
@@ -28,9 +31,9 @@
     <TextView
         android:id="@+id/text_view_info"
         style="@style/word_title"
+        android:layout_below="@+id/dots_indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
         android:textColor="@color/black"
         android:textSize="15sp" />
 </RelativeLayout>

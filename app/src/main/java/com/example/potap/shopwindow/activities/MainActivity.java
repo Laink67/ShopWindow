@@ -5,15 +5,11 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuInflater;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.PopupMenu;
 
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
@@ -25,16 +21,20 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private SneakersViewModel mSneakersViewModel;
+    private SneakersListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        ImageButton menuSort = findViewById(R.id.menu_sort);
+//        ImageButton menuSort = findViewById(R.id.menu_sort);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+
+        if(toolbar != null)
+            setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final SneakersListAdapter adapter = new SneakersListAdapter(this);
+        adapter = new SneakersListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -52,53 +52,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        menuSort.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopup(v,adapter);
-            }
-        });
-
     }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         }
 
-    private void showPopup(View v, final SneakersListAdapter adapter) {
-        PopupMenu popup = new PopupMenu(this, v);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.popup_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.item_sort_a_z:
-                        {
-                        mSneakersViewModel.getSorted("name").observe(MainActivity.this, new Observer<List<Sneakers>>() {
-                            @Override
-                            public void onChanged(@Nullable List<Sneakers> sneakers) {
-                                adapter.setSneakers(sneakers);
-                            }
-                        });
-                        return true;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_sort_a_z:{
+                mSneakersViewModel.getSorted("name").observe(MainActivity.this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
                     }
-                    case R.id.item_sort_price:
-                        {
-                        mSneakersViewModel.getSorted("price").observe(MainActivity.this, new Observer<List<Sneakers>>() {
-                            @Override
-                            public void onChanged(@Nullable List<Sneakers> sneakers) {
-                                adapter.setSneakers(sneakers);
-                            }
-                        });
-                        return true;
-                    }
-                     default:
-                        return false;
-                }
+                });
+                return true;
             }
-        });
-        popup.show();
+            case R.id.item_sort_price:{
+                mSneakersViewModel.getSorted("price").observe(MainActivity.this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

@@ -3,7 +3,6 @@ package com.example.potap.shopwindow.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -19,17 +18,19 @@ public class InfoActivity extends AppCompatActivity {
     public static final String EXTRA_OBJECTS = "SneakersObjects";
 
     private ArrayList<String> imagesLink = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.info_toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(true);
+//        setSupportActionBar(toolbar);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            getSupportActionBar().setHomeButtonEnabled(true);
         }
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 

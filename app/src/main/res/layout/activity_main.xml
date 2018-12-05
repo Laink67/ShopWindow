@@ -6,38 +6,46 @@
     android:background="@color/white"
     tools:context="com.example.potap.shopwindow.activities.MainActivity">
 
+    <include layout="@layout/main_toolbar" />
 
+        <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tab_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/to"-->
+            <!--android:background="@color/blue_toolbar"-->
+            <!--android:layout_gravity="top">-->
+
+            <!--<android.support.design.widget.TabItem-->
+                <!--android:icon="@drawable/ic_home_24dp"-->
+                <!--android:text="Home" />-->
+
+            <!--<android.support.design.widget.TabItem-->
+                <!--android:icon="@drawable/ic_menu_24dp"-->
+                <!--android:text="Menu" />-->
+
+        <!--</android.support.design.widget.TabLayout>   -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/rect"
-        tools:listitem="@layout/recyclerview_item" />
+    android:id="@+id/recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="75dp"
+    android:background="@drawable/rect"
+    tools:listitem="@layout/recyclerview_item" />
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:visibility="invisible"
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/menu_sort"
-        android:layout_width="60dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="310dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/ripple"
-        android:contentDescription="@string/todo"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:src="@drawable/ic_sort_black_24dp"
-        android:text="@string/sort"
-        />
+    <!--<ImageButton-->
+    <!--android:id="@+id/menu_sort"-->
+    <!--android:layout_width="24dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_marginStart="310dp"-->
+    <!--android:layout_marginLeft="120dp"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:background="@drawable/ripple"-->
+    <!--android:contentDescription="@string/todo"-->
+    <!--android:foreground="?android:attr/selectableItemBackground"-->
+    <!--android:src="@drawable/ic_sort_black_24dp"-->
+    <!--android:text="@string/sort"-->
+    <!--/>-->
 
 
 </android.support.design.widget.CoordinatorLayout>

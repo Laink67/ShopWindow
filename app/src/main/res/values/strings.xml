@@ -8,4 +8,6 @@
     <string name="a_z">A-Z</string>
     <string name="price">Price</string>
     <string name="todo">TODO</string>
+    <string name="basket">Basket</string>
+    <string name="search">Search</string>
 </resources>
