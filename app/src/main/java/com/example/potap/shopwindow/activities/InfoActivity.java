@@ -24,13 +24,11 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.info_toolbar);
 
-//        setSupportActionBar(toolbar);
-
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setHomeButtonEnabled(true);
         }
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 

@@ -14,7 +14,7 @@ public class Sneakers implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    private int id;
+    public int id;
 
     public int getId() {
         return this.id;
@@ -34,7 +34,7 @@ public class Sneakers implements Serializable {
     private int price;
 
     @ColumnInfo(name = "mainImage")
-    private String image;
+    public String image;
 
     @ColumnInfo(name = "secondImage")
     private String secondImage;

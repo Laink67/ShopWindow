@@ -72,7 +72,7 @@ public class SneakersListAdapter extends RecyclerView.Adapter<SneakersListAdapte
                 Intent intent = new Intent(context, InfoActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(EXTRA_OBJECTS,current);
+                bundle.putSerializable(EXTRA_OBJECTS, current);
 
                 intent.putExtras(bundle);
                 context.startActivity(intent);
@@ -85,7 +85,7 @@ public class SneakersListAdapter extends RecyclerView.Adapter<SneakersListAdapte
         notifyDataSetChanged();
     }
 
-        public void getSorted(final String column) {
+    public void getSorted(final String column) {
         Collections.sort(mSneakers, new Comparator<Sneakers>() {
             @Override
             public int compare(Sneakers o1, Sneakers o2) {

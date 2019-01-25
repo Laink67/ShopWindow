@@ -9,5 +9,6 @@
     <color name="white_grey">#636363</color>
     <color name="black">#000000</color>
     <color name="white_blue">#87eff9</color>
+    <color name="productGridBackgroundColor">#FFFBFA</color>
     <color name="blue_toolbar">#00b2cc</color>
 </resources>

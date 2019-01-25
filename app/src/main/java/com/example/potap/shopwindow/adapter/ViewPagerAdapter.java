@@ -41,21 +41,19 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         assert mInflater != null;
-        View itemView = mInflater.inflate(R.layout.viewpager_item,container,false);
-        ImageView imageView;
-        imageView = itemView.findViewById(R.id.image_info);
+        View itemView = mInflater.inflate(R.layout.viewpager_item, container, false);
+        ImageView imageView = itemView.findViewById(R.id.image_info);
 
         DisplayMetrics dis = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dis);
         imageView.setMinimumHeight(dis.heightPixels);
         imageView.setMinimumWidth(dis.widthPixels);
 
-        try{
+        try {
             Glide.with(activity.getApplicationContext())
                     .load(imagesLink.get(position))
                     .into(imageView);
-        }
-        catch (Exception ignored){
+        } catch (Exception ignored) {
 
         }
         container.addView(itemView);

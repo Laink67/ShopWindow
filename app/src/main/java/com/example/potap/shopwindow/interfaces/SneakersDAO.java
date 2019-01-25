@@ -29,5 +29,4 @@ public interface SneakersDAO {
 
     @Query("DELETE FROM sneakers")
     void deleteAll();
-
 }

@@ -8,37 +8,57 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.example.potap.shopwindow.dbObjects.Categories;
+import com.example.potap.shopwindow.dbObjects.News;
 import com.example.potap.shopwindow.dbObjects.Sneakers;
+import com.example.potap.shopwindow.interfaces.CategoriesDAO;
+import com.example.potap.shopwindow.interfaces.NewsDAO;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
-@Database(entities = {Sneakers.class}, version = 1)
+@Database(entities = {Sneakers.class, Categories.class, News.class}, version = 1)
 public abstract class DataManager extends RoomDatabase {
+
     public abstract SneakersDAO sneakersDAO();
+    public abstract CategoriesDAO categoriesDAO();
+    public abstract NewsDAO newsDAO();
 
     private static volatile DataManager INSTANCE;
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final SneakersDAO mDao;
+        private final CategoriesDAO cDao;
+        private final NewsDAO nDao;
 
         PopulateDbAsync(DataManager db) {
             mDao = db.sneakersDAO();
+            cDao = db.categoriesDAO();
+            nDao = db.newsDAO();
         }
 
         @Override
         protected Void doInBackground(final Void... params) {
 
             mDao.deleteAll();
+            cDao.deleteAll();
+            nDao.deleteAll();
+
+            News news = new News("Новые товары", "http://www.slamdunk.ru/images/j/jordans.jpg");
+            nDao.insert(news);
+
+            Categories categories = new Categories("Новые товары", "http://www.slamdunk.ru/images/j/jordans.jpg");
+            cDao.insert(categories);
 
             Sneakers sneakers = new Sneakers(
                     "Reebook",
                     5000,
                     "Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара.",
-                    "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
                     "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
+                    "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
-                    );
+            );
             mDao.insert(sneakers);
+
             sneakers = new Sneakers(
                     "Adidas",
                     4500,
@@ -57,7 +77,7 @@ public abstract class DataManager extends RoomDatabase {
                     "http://greezzlee.ru/wp-content/uploads/2018/09/Nike-air-max-95-2-2.jpg"
             );
             mDao.insert(sneakers);
-             sneakers = new Sneakers(
+            sneakers = new Sneakers(
                     "Reebook",
                     5000,
                     "Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара.",
@@ -117,19 +137,19 @@ public abstract class DataManager extends RoomDatabase {
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
 
-
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
             new PopulateDbAsync(INSTANCE).execute();
         }
-        };
+    };
 
     static DataManager getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (DataManager.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DataManager.class, "sneakers")
+                            DataManager.class, "shop_db")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
