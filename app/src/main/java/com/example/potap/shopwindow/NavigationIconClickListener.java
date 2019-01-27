@@ -1,6 +1,7 @@
 package com.example.potap.shopwindow;
 
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -58,9 +59,8 @@ public class NavigationIconClickListener implements View.OnClickListener {
 
         updateIcon(view);
 
-/*
         final int translateY = height -
-                context.getResources().getDimensionPixelSize(R.dimen.shr_product_grid_reveal_height);
+                context.getResources().getDimensionPixelSize(R.dimen.grid_reveal_height);
 
         ObjectAnimator animator = ObjectAnimator.ofFloat(sheet, "translationY", backdropShown ? translateY : 0);
         animator.setDuration(500);
@@ -69,7 +69,6 @@ public class NavigationIconClickListener implements View.OnClickListener {
         }
         animatorSet.play(animator);
         animator.start();
-*/
     }
 
     private void updateIcon(View view) {

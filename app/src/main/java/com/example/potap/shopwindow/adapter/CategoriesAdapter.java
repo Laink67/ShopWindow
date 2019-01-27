@@ -2,12 +2,12 @@ package com.example.potap.shopwindow.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,14 +23,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 class CategoriesViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameItemView;
     private final ImageView image;
-    private final RelativeLayout parentLayout;
+    private final MaterialCardView materialCardView;
 
 
     private CategoriesViewHolder(View itemView) {
         super(itemView);
         nameItemView = itemView.findViewById(R.id.news_text_view);
         image = itemView.findViewById(R.id.news_image);
-        parentLayout = itemView.findViewById(R.id.news_parent_layout);
+        materialCardView = itemView.findViewById(R.id.news_material_card);
     }
 }
 

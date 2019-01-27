@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
-import com.example.potap.shopwindow.NavigationIconClickListener;
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.MainPageAdapter;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
@@ -78,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
         if(toolbar != null)
             setSupportActionBar(toolbar);
 
+/*
         toolbar.setNavigationOnClickListener(new NavigationIconClickListener(this, findViewById(R.id.product_grid)));
+*/
     }
 }
 

@@ -15,7 +15,7 @@ import com.example.potap.shopwindow.interfaces.CategoriesDAO;
 import com.example.potap.shopwindow.interfaces.NewsDAO;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
-@Database(entities = {Sneakers.class, Categories.class, News.class}, version = 1)
+@Database(entities = {Sneakers.class, Categories.class, News.class}, version = 3)
 public abstract class DataManager extends RoomDatabase {
 
     public abstract SneakersDAO sneakersDAO();
@@ -43,7 +43,16 @@ public abstract class DataManager extends RoomDatabase {
             cDao.deleteAll();
             nDao.deleteAll();
 
-            News news = new News("Новые товары", "http://www.slamdunk.ru/images/j/jordans.jpg");
+            News news = new News("Распродажа","https://www.idf-dutyfree.com/wp-content/uploads/2018/01/Big-Sale-NEWS-1-1100x485.jpg");
+            nDao.insert(news);
+
+            news = new News("Тренды сезона","https://media.gq.com/photos/59b2b427b10d5e3a537c8801/master/w_3000/balenciaga-sneakers-lede-2.jpg");
+            nDao.insert(news);
+
+            news = new News("Футбольная коллекция", "http://footballbootsguru.com/wp-content/uploads/2017/06/Adidas-Glitch-football-boots-4-of-the-colourways.jpg");
+            nDao.insert(news);
+
+            news = new News ("Баскетбольные новинки","https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAyNi80NzIvb3JpZ2luYWwvbmlrZV9ob3VzdG9uc25lYWtlcnMuanBn");
             nDao.insert(news);
 
             Categories categories = new Categories("Новые товары", "http://www.slamdunk.ru/images/j/jordans.jpg");

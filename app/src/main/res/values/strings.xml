@@ -10,4 +10,10 @@
     <string name="todo">TODO</string>
     <string name="basket">Basket</string>
     <string name="search">Search</string>
+    <string name="for_woman">Женщинам</string>
+    <string name="for_man">Мужчинам</string>
+    <string name="for_kids">Детям</string>
+    <string name="football">Футбол</string>
+    <string name="basketball">Баскетбол</string>
+    <string name="brands">Бренды</string>
 </resources>
