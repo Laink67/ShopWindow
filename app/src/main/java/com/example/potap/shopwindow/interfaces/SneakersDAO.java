@@ -15,6 +15,15 @@ public interface SneakersDAO {
     @Query("SELECT * from sneakers")
     LiveData<List<Sneakers>> getSneakers();
 
+    @Query(("SELECT * from sneakers WHERE gender = 1"))
+    LiveData<List<Sneakers>> getSneakersForMale();
+
+    @Query(("SELECT * from sneakers WHERE gender = 0"))
+    LiveData<List<Sneakers>> getSneakersForFemale();
+
+    @Query(("SELECT * from sneakers WHERE child = 'true'"))
+    LiveData<List<Sneakers>> getSneakersForChildren();
+
     @Insert
     void insert(Sneakers word);
 

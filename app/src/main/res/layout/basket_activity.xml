@@ -1,0 +1,106 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.potap.shopwindow.activities.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:text="@string/basket_ru"
+            android:textColor="@color/blue_toolbar"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <include layout="@layout/basket_fragment" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RelativeLayout
+                android:id="@+id/basket_result_titles_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/basket_all_number_title"
+                    style="@style/basket_text"
+                    android:layout_width="wrap_content"
+                    android:text="@string/all_products" />
+
+                <TextView
+                    android:id="@+id/basket_sum_title"
+                    style="@style/basket_text"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/basket_all_number_title"
+                    android:text="@string/all_products_sum"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/basket_result_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="140dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_toEndOf="@+id/basket_result_titles_layout"
+                android:layout_toRightOf="@+id/basket_result_titles_layout">
+
+                <TextView
+                    android:id="@+id/basket_all_number"
+                    style="@style/basket_result_text" />
+
+                <TextView
+                    android:id="@+id/basket_sum"
+                    style="@style/basket_result_text"
+                    android:layout_below="@+id/basket_all_number" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line"
+                style="@style/Line"
+                android:layout_below="@+id/basket_result_layout"
+                android:layout_marginTop="8dp" />
+
+            <View
+                android:layout_below="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+        android:id="@+id/action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        app:floating_background_color="@color/colorAccent"
+        app:floating_title="Оформить заказ"
+        app:floating_title_color="@android:color/white"
+        />
+</android.support.design.widget.CoordinatorLayout>

@@ -16,13 +16,25 @@ public class SneakersViewModel extends AndroidViewModel {
 
     public SneakersViewModel(Application application) {
         super(application);
-        mRepository = new SneakersRepository(application);
+        mRepository = SneakersRepository.getInstance(application);
         mAllSneakers = mRepository.getAllSneakers();
     }
 
     public LiveData<List<Sneakers>> getAllSneakers() {
         mAllSneakers = mRepository.getAllSneakers();
         return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getMaleSneakers() {
+        return mRepository.getMaleSneakers();
+    }
+
+    public LiveData<List<Sneakers>> getFemaleSneakers() {
+        return mRepository.getFemaleSneakers();
+    }
+
+    public LiveData<List<Sneakers>> getChildrenSneakers() {
+        return mRepository.getChildrenSneakers();
     }
 
     public void insert(Sneakers sneakers) {

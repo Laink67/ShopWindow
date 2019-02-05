@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.potap.shopwindow.activities.mainTabs.CategoriesTab;
 import com.example.potap.shopwindow.activities.mainTabs.NewsTab;
+import com.example.potap.shopwindow.activities.mainTabs.PersonTab;
 import com.example.potap.shopwindow.activities.mainTabs.ProductsTab;
 
 public class MainPageAdapter extends FragmentPagerAdapter {
@@ -13,6 +14,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
     private NewsTab newsTab = new NewsTab();
     private ProductsTab productsTab = new ProductsTab();
     private CategoriesTab categoriesTab = new CategoriesTab();
+    private PersonTab personTab = new PersonTab();
 
     public MainPageAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
@@ -25,6 +27,8 @@ public class MainPageAdapter extends FragmentPagerAdapter {
                 return newsTab;
             case 1:
                 return categoriesTab;
+            case 2:
+                return personTab;
             default:
                 return null;
         }
@@ -32,7 +36,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
 //    @Nullable

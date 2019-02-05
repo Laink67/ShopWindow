@@ -10,10 +10,17 @@ import com.example.potap.shopwindow.interfaces.CategoriesDAO;
 import java.util.List;
 
 public class CategoriesRepository {
+    private static CategoriesRepository instance;
     private CategoriesDAO mCategoriesDAO;
     private LiveData<List<Categories>> mAllCategories;
 
-    public CategoriesRepository(Application application) {
+    public static CategoriesRepository getInstance(Application application){
+        if (instance == null)
+            instance = new CategoriesRepository(application);
+        return instance;
+    }
+
+    private CategoriesRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mCategoriesDAO = db.categoriesDAO();
         mAllCategories = mCategoriesDAO.getCategories();

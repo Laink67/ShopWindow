@@ -28,14 +28,15 @@ public class CategoriesTab extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.categories_fragment,container,false);
+
         RecyclerView recyclerView = view.findViewById(R.id.categories_recyclerview);
+
         adapter = new CategoriesAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         mCategoriesViewModel = ViewModelProviders.of(this).get(CategoriesViewModel.class);
-
 
         // Add an observer on the LiveData returned by getAll.
         // The onChanged() method fires when the observed data changes and the activity is in the foreground.
@@ -49,30 +50,4 @@ public class CategoriesTab extends Fragment {
 
         return view;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.item_sort_a_z: {
-//                mSneakersViewModel.getSorted("name").observe(CategoriesTab.this, new Observer<List<Sneakers>>() {
-//                    @Override
-//                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//                return true;
-//            }
-//            case R.id.item_sort_price: {
-//                mSneakersViewModel.getSorted("price").observe(CategoriesTab.this, new Observer<List<Sneakers>>() {
-//                    @Override
-//                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//                return true;
-//            }
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
 }

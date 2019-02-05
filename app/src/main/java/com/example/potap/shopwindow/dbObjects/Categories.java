@@ -14,7 +14,7 @@ public class Categories implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     public int getId() {
         return this.id;
@@ -28,7 +28,7 @@ public class Categories implements Serializable {
     private String title;
 
     @ColumnInfo(name = "mainImage")
-    public String image;
+    private String image;
 
     public Categories(String title,String image) {
         this.title = title;

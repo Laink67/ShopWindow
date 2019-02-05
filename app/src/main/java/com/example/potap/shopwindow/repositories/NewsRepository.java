@@ -10,10 +10,17 @@ import com.example.potap.shopwindow.interfaces.NewsDAO;
 import java.util.List;
 
 public class NewsRepository {
+    private static NewsRepository instance;
     private NewsDAO mNewsDAO;
     private LiveData<List<News>> mAllNews;
 
-    public NewsRepository(Application application) {
+    public static NewsRepository getInstance(Application application) {
+        if (instance == null)
+            instance = new NewsRepository(application);
+        return instance;
+    }
+
+    private NewsRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mNewsDAO = db.newsDAO();
         mAllNews = mNewsDAO.getNews();

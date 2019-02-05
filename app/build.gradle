@@ -54,6 +54,9 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
 
+    //text floatingButton
+    implementation 'com.github.dimorinny:floating-text-button:0.0.4'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "android.arch.core:core-testing:$rootProject.archLifecycleVersion"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {

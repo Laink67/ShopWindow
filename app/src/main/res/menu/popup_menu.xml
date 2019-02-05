@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item_sort_a-z"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/a_z"
-        />
+        android:id="@+id/item_find"
+        android:icon="@drawable/ic_search_24dp"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:showAsAction="always" />
     <item
-        android:id="@+id/item_sort_price"
-        android:title="@string/price"
-        />
+        android:id="@+id/item_sort"
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:title="@string/sort"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/item_sort_a-z"
+                android:title="@string/a_z"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/item_sort_price"
+                android:title="@string/price"
+                app:showAsAction="always" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/bascet"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/basket"
+        app:showAsAction="always" />
 </menu>

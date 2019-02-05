@@ -1,39 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.potap.shopwindow.activities.MainActivity">
 
-    <include layout="@layout/info_toolbar"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_below="@+id/info_toolbar"
-        android:layout_width="350dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="300dp">
-    </android.support.v4.view.ViewPager>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
+            <include layout="@layout/main_toolbar" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_below="@+id/toolbar"
+                android:layout_centerHorizontal="true">
+
+            </android.support.v4.view.ViewPager>
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_pager"
+                android:layout_centerHorizontal="true"
+                app:dotsColor="@color/colorAccent"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="10dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5" />
+
+            <TextView
+                android:id="@+id/name_info_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dots_indicator"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/blue_toolbar"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/price_info_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_info_text_view"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/blue_toolbar"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <android.support.design.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/price_info_text_view"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/transparent">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/info_description_title"
+                        style="@style/info_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_view_info"
+                        style="@style/info_description"
+                        android:layout_below="@+id/info_description_title" />
+                </RelativeLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+        android:id="@+id/add_to_basket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_pager"
-        android:layout_centerHorizontal="true"
-        app:dotsColor="@color/grey"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="10dp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        />
-
-    <TextView
-        android:id="@+id/text_view_info"
-        style="@style/word_title"
-        android:layout_below="@+id/dots_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
-</RelativeLayout>
+        android:layout_gravity="end|bottom"
+        app:floating_background_color="@color/colorAccent"
+        app:floating_left_icon="@drawable/ic_add_basket"
+        app:floating_title="Добавить в корзину"
+        app:floating_title_color="@android:color/white" />
+</android.support.design.widget.CoordinatorLayout>

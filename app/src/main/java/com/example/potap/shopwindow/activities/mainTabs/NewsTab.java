@@ -48,30 +48,4 @@ public class NewsTab extends Fragment {
 
         return view;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.item_sort_a_z: {
-//                mSneakersViewModel.getSorted("name").observe(NewsTab.this, new Observer<List<Sneakers>>() {
-//                    @Override
-//                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//                return true;
-//            }
-//            case R.id.item_sort_price: {
-//                mSneakersViewModel.getSorted("price").observe(NewsTab.this, new Observer<List<Sneakers>>() {
-//                    @Override
-//                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-//                        adapter.setSneakers(sneakers);
-//                    }
-//                });
-//                return true;
-//            }
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
 }

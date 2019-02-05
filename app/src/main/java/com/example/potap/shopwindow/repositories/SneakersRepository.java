@@ -10,10 +10,17 @@ import com.example.potap.shopwindow.interfaces.SneakersDAO;
 import java.util.List;
 
 public class SneakersRepository {
+    private static SneakersRepository instance;
     private SneakersDAO mSneakersDao;
     private LiveData<List<Sneakers>> mAllSneakers;
 
-    public SneakersRepository(Application application) {
+    public static SneakersRepository getInstance(Application application) {
+        if (instance == null)
+            instance = new SneakersRepository(application);
+        return instance;
+    }
+
+    private SneakersRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mSneakersDao = db.sneakersDAO();
         mAllSneakers = mSneakersDao.getSneakers();
@@ -22,6 +29,18 @@ public class SneakersRepository {
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Sneakers>> getAllSneakers() {
         return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getMaleSneakers() {
+        return mSneakersDao.getSneakersForMale();
+    }
+
+    public LiveData<List<Sneakers>> getFemaleSneakers() {
+        return mSneakersDao.getSneakersForFemale();
+    }
+
+    public LiveData<List<Sneakers>> getChildrenSneakers() {
+        return mSneakersDao.getSneakersForChildren();
     }
 
     public void insert(Sneakers sneakers) {

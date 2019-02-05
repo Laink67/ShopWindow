@@ -16,4 +16,17 @@
     <string name="football">Футбол</string>
     <string name="basketball">Баскетбол</string>
     <string name="brands">Бренды</string>
+    <string name="my_data">Мои данные</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="notifications">Уведомления</string>
+    <string name="name">Имя</string>
+    <string name="size">Размер:</string>
+    <string name="color">Цвет:</string>
+    <string name="number">Количество:</string>
+    <string name="price_ru">Цена:</string>
+    <string name="all_products">Всего товаров</string>
+    <string name="all_products_sum">Товаров на сумму</string>
+    <string name="basket_ru">Корзина</string>
+    <string name="checkout">Оформить заказ</string>
+    <string name="description">Описание</string>
 </resources>

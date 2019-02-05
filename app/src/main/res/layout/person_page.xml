@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/person_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/person_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/oval"
+            android:elevation="3dp"
+            android:src="@drawable/ic_photo" />
+
+        <TextView
+            android:id="@+id/person_name_text_view"
+            style="@style/info_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_toEndOf="@+id/person_image"
+            android:layout_toRightOf="@+id/person_image"
+            android:text="@string/name"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <View style="@style/Line" />
+
+    <android.support.design.button.MaterialButton
+        style="@style/Widget.ShopWindow.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/my_data"
+        app:icon="@drawable/ic_account_card"
+        app:iconGravity="textStart"
+        app:iconPadding="6dp" />
+
+    <View style="@style/Line" />
+
+    <android.support.design.button.MaterialButton
+        style="@style/Widget.ShopWindow.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/my_orders"
+        app:icon="@drawable/ic_note_text"
+        app:iconGravity="textStart"
+        app:iconPadding="4dp" />
+
+    <View style="@style/Line" />
+
+    <android.support.design.button.MaterialButton
+        style="@style/Widget.ShopWindow.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notifications"
+        app:icon="@drawable/ic_notifications"
+        app:iconGravity="textStart"
+        app:iconPadding="4dp" />
+</LinearLayout>

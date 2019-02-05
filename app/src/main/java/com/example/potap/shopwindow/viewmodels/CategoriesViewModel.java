@@ -16,7 +16,7 @@ public class CategoriesViewModel extends AndroidViewModel {
 
     public CategoriesViewModel(Application application) {
         super(application);
-        mRepository = new CategoriesRepository(application);
+        mRepository = CategoriesRepository.getInstance(application);
         mAllCategories = mRepository.getAllCategories();
     }
 
