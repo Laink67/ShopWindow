@@ -28,29 +28,47 @@ public class SneakersRepository {
 
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Sneakers>> getAllSneakers() {
+        mAllSneakers = mSneakersDao.getSneakers();
         return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getMaleSneakers() {
-        return mSneakersDao.getSneakersForMale();
+        mAllSneakers = mSneakersDao.getSneakersForMale(false);
+        return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getFemaleSneakers() {
-        return mSneakersDao.getSneakersForFemale();
+        mAllSneakers = mSneakersDao.getSneakersForFemale(false);
+        return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getChildrenSneakers() {
-        return mSneakersDao.getSneakersForChildren();
+        mAllSneakers = mSneakersDao.getSneakersForChildren(true);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSportSneakers(int sport) {
+        mAllSneakers = mSneakersDao.getSportSneakers(sport);
+        return mAllSneakers;
     }
 
     public void insert(Sneakers sneakers) {
         new InsertAsyncTask(mSneakersDao).execute(sneakers);
     }
 
-//    public LiveData<List<Sneakers>> getSorted(String column) {
-//        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName() : mSneakersDao.getSortedByPrice();
-//        return mAllSneakers;
-//    }
+
+    public LiveData<List<Sneakers>> getSorted(int gender, boolean child, String column) {
+        if (child)
+            mAllSneakers = column.equals("name") ? mSneakersDao.getSortedChildrenByName(true) : mSneakersDao.getSortedChildrenByPrice(true);
+        else
+            mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName(gender, false) : mSneakersDao.getSortedByPrice(gender, false);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSportSorted(int sport, String column) {
+        mAllSneakers = column.equals("name") ? mSneakersDao.getSportSortedByName(sport) : mSneakersDao.getSportSortedByPrice(sport);
+        return mAllSneakers;
+    }
 
     public LiveData<List<Sneakers>> sort(String column) {
 

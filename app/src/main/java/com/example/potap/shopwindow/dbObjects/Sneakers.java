@@ -34,6 +34,9 @@ public class Sneakers implements Serializable {
     @ColumnInfo(name = "child")
     private boolean child;
 
+    @ColumnInfo(name = "sport")             /*Nothing = -1, Football = 0, Basketball = 1*/
+    private int sport;
+
     @ColumnInfo(name = "mainImage")
     public String image;
 
@@ -53,25 +56,27 @@ public class Sneakers implements Serializable {
     }
 */
 
-    public Sneakers(String name, int price, String description, String color,int gender, boolean child, String image, String secondImage, String thirdImage) {
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child,int sport, String image, String secondImage, String thirdImage) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.color = color;
         this.gender = gender;
         this.child = child;
+        this.sport = sport;
         this.image = image;
         this.secondImage = secondImage;
         this.thirdImage = thirdImage;
     }
 
-    public Sneakers(String name, int price, String description, String color, int gender, boolean child, ArrayList<String> imagesLinks) {
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child,int sport, ArrayList<String> imagesLinks) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.color = color;
         this.gender = gender;
         this.child = child;
+        this.sport = sport;
         this.image = imagesLinks.get(0);
         this.secondImage = imagesLinks.get(1);
         this.thirdImage = imagesLinks.get(2);
@@ -97,6 +102,10 @@ public class Sneakers implements Serializable {
 
     public boolean isChild() {
         return this.child;
+    }
+
+    public int getSport() {
+        return sport;
     }
 
     public String getColor() {

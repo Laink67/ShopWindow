@@ -14,15 +14,14 @@
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.InfoActivity"
+            android:parentActivityName=".activities.BasketActivity"/>
+        <activity android:name=".activities.SneakersActivity"
             android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.BasketActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.SneakersActivity"
             android:parentActivityName=".activities.MainActivity"/>
     </application>
 

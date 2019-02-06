@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
@@ -22,15 +23,18 @@ public class SneakersActivity extends AppCompatActivity {
 
     private SneakersViewModel sneakersViewModel;
     private SneakersListAdapter adapter;
+    private String title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sneakers_activity);
+        TextView titleTextView = findViewById(R.id.sneakers_title);
 
         setUpToolbar();
 
-        String title = getIntent().getExtras().getString("title");
+        title = getIntent().getExtras().getString("title");
+        titleTextView.setText(title);
 
         adapter = new SneakersListAdapter(this);
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -50,11 +54,16 @@ public class SneakersActivity extends AppCompatActivity {
             case "Детям":
                 getChildrenSneakers();
                 break;
+            case "Футбол":
+                getSportSneakers(0);
+                break;
+            case "Баскетбол":
+                getSportSneakers(1);
+                break;
             default:
                 getAllSneakers();
                 break;
         }
-
     }
 
     private void getAllSneakers() {
@@ -93,6 +102,15 @@ public class SneakersActivity extends AppCompatActivity {
         });
     }
 
+    private void getSportSneakers(int sport) {
+        sneakersViewModel.getSportSneakers(sport).observe(this, new Observer<List<Sneakers>>() {
+            @Override
+            public void onChanged(@Nullable List<Sneakers> sportSneakers) {
+                adapter.setSneakers(sportSneakers);
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.popup_menu, menu);
@@ -101,13 +119,22 @@ public class SneakersActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (title.equals("Футбол")|| title.equals("Баскетбол"))
+            return getMenuSport(item);
+        else
+            return getMenuForMaleAndFemale(item);
+    }
+
+    private boolean getMenuForMaleAndFemale(MenuItem item) {
+        final int gender = title.equals("Мужчинам") ? 1 : 0;
+        final boolean child = title.equals("Детям");
+
         switch (item.getItemId()) {
             case R.id.bascet:
-                Intent intent = new Intent(this, BasketActivity.class);
-                startActivity(intent);
+                goToBasket();
                 return true;
             case R.id.item_sort_a_z:
-                sneakersViewModel.getSorted("name").observe(this, new Observer<List<Sneakers>>() {
+                sneakersViewModel.getSorted(gender, child, "name").observe(this, new Observer<List<Sneakers>>() {
                     @Override
                     public void onChanged(@Nullable List<Sneakers> sneakers) {
                         adapter.setSneakers(sneakers);
@@ -115,7 +142,7 @@ public class SneakersActivity extends AppCompatActivity {
                 });
                 return true;
             case R.id.item_sort_price:
-                sneakersViewModel.getSorted("price").observe(this, new Observer<List<Sneakers>>() {
+                sneakersViewModel.getSorted(gender, child, "price").observe(this, new Observer<List<Sneakers>>() {
                     @Override
                     public void onChanged(@Nullable List<Sneakers> sneakers) {
                         adapter.setSneakers(sneakers);
@@ -125,6 +152,39 @@ public class SneakersActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private boolean getMenuSport(MenuItem item) {
+        final int sport = title.equals("Футбол") ? 0 : 1;
+
+        switch (item.getItemId()) {
+            case R.id.bascet:
+                goToBasket();
+                return true;
+            case R.id.item_sort_a_z:
+                sneakersViewModel.getSportSorted(sport, "name").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            case R.id.item_sort_price:
+                sneakersViewModel.getSportSorted(sport, "price").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void goToBasket() {
+        Intent intent = new Intent(this, BasketActivity.class);
+        startActivity(intent);
     }
 
     private void setUpToolbar() {

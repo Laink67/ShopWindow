@@ -26,15 +26,23 @@ public class SneakersViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Sneakers>> getMaleSneakers() {
-        return mRepository.getMaleSneakers();
+        mAllSneakers = mRepository.getMaleSneakers();
+        return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getFemaleSneakers() {
-        return mRepository.getFemaleSneakers();
+        mAllSneakers = mRepository.getFemaleSneakers();
+        return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getChildrenSneakers() {
-        return mRepository.getChildrenSneakers();
+        mAllSneakers = mRepository.getChildrenSneakers();
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSportSneakers(int sport){
+        mAllSneakers = mRepository.getSportSneakers(sport);
+        return mAllSneakers;
     }
 
     public void insert(Sneakers sneakers) {
@@ -45,4 +53,15 @@ public class SneakersViewModel extends AndroidViewModel {
         mAllSneakers = mRepository.sort(column);
         return mAllSneakers;
     }
+
+    public LiveData<List<Sneakers>> getSorted(int gender,boolean child,String column){
+        mAllSneakers = mRepository.getSorted(gender,child,column);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSportSorted(int sport,String column){
+        mAllSneakers = mRepository.getSportSorted(sport,column);
+        return mAllSneakers;
+    }
+
 }

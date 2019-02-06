@@ -18,7 +18,7 @@ public interface NewsDAO {
     @Insert
     void insert(News word);
 
-    @Query("DELETE FROM News")
+    @Query("DELETE FROM news")
     void deleteAll();
 
 }

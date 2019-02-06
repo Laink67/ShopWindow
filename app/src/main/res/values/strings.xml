@@ -29,4 +29,6 @@
     <string name="basket_ru">Корзина</string>
     <string name="checkout">Оформить заказ</string>
     <string name="description">Описание</string>
+    <string name="boys">Мальчикам</string>
+    <string name="girls">Девочкам</string>
 </resources>
