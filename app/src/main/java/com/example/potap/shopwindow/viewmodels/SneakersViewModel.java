@@ -64,4 +64,9 @@ public class SneakersViewModel extends AndroidViewModel {
         return mAllSneakers;
     }
 
+    public LiveData<List<Sneakers>> search(String searchString){
+        mAllSneakers = mRepository.search(searchString);
+        return mAllSneakers;
+    }
+
 }

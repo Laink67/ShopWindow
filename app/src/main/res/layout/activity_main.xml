@@ -3,49 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.potap.shopwindow.activities.MainActivity">
 
-    <include layout="@layout/main_toolbar" />
+    <include layout="@layout/main_toolbar"/>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/blue_toolbar"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/blue_toolbar"
+        app:tabTextColor="@color/black"
+        app:tabIconTint="@color/blue_toolbar"
+        android:layout_marginTop="55dp"
+        >
+        <android.support.design.widget.TabItem
             android:layout_height="wrap_content"
-            android:layout_below="@+id/to"
-            android:background="@color/blue_toolbar"
-            android:layout_gravity="top">
+            android:layout_width="wrap_content"
+            android:icon="@drawable/ic_home_24dp"
+            />
 
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/ic_home_24dp"
-                android:text="Home" />
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/shr_menu"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
 
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/ic_menu_24dp"
-                android:text="Menu" />
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/ic_person"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
 
-        </android.support.design.widget.TabLayout>
-    <android.support.v7.widget.RecyclerView
-    android:id="@+id/recyclerview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="75dp"
-    android:background="@drawable/rect"
-    tools:listitem="@layout/recyclerview_item" />
+    </android.support.design.widget.TabLayout>
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/menu_sort"-->
-    <!--android:layout_width="24dp"-->
-    <!--android:layout_height="35dp"-->
-    <!--android:layout_marginStart="310dp"-->
-    <!--android:layout_marginLeft="120dp"-->
-    <!--android:layout_marginTop="0dp"-->
-    <!--android:background="@drawable/ripple"-->
-    <!--android:contentDescription="@string/todo"-->
-    <!--android:foreground="?android:attr/selectableItemBackground"-->
-    <!--android:src="@drawable/ic_sort_black_24dp"-->
-    <!--android:text="@string/sort"-->
-    <!--/>-->
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_main"
+        android:layout_marginTop="103dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
 
 </android.support.design.widget.CoordinatorLayout>
+

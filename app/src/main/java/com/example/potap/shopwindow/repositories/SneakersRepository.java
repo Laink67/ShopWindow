@@ -80,6 +80,11 @@ public class SneakersRepository {
         return mAllSneakers;
     }
 
+    public LiveData<List<Sneakers>> search(String searchString){
+        mAllSneakers = mSneakersDao.search(searchString);
+        return mAllSneakers;
+    }
+
     private static class InsertAsyncTask extends AsyncTask<Sneakers, Void, Void> {
 
         private SneakersDAO mAsyncTaskDao;

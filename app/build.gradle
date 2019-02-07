@@ -57,6 +57,9 @@ dependencies {
     //text floatingButton
     implementation 'com.github.dimorinny:floating-text-button:0.0.4'
 
+    //MaterialSearchBar
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "android.arch.core:core-testing:$rootProject.archLifecycleVersion"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {

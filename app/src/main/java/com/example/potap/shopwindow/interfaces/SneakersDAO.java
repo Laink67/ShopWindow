@@ -30,6 +30,7 @@ public interface SneakersDAO {
     @Insert
     void insert(Sneakers word);
 
+    //SORT
     @Query("SELECT * from sneakers ORDER BY price ASC")
     LiveData<List<Sneakers>> getSortedByPrice();
 
@@ -53,7 +54,10 @@ public interface SneakersDAO {
 
     @Query("SELECT * FROM sneakers WHERE sport = :sport ORDER BY price")
     LiveData<List<Sneakers>> getSportSortedByPrice(int sport);
-
+//
     @Query("DELETE FROM sneakers")
     void deleteAll();
+
+    @Query("SELECT * FROM sneakers WHERE name LIKE :searchString")
+    LiveData<List<Sneakers>> search(String searchString);
 }
