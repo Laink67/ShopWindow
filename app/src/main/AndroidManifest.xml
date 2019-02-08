@@ -23,6 +23,8 @@
             android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.BasketActivity"
             android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.SearchActivity"
+            android:parentActivityName=".activities.MainActivity"/>
     </application>
 
 </manifest>

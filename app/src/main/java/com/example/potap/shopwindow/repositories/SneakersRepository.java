@@ -81,6 +81,7 @@ public class SneakersRepository {
     }
 
     public LiveData<List<Sneakers>> search(String searchString){
+        searchString = "%" + searchString + "%";
         mAllSneakers = mSneakersDao.search(searchString);
         return mAllSneakers;
     }

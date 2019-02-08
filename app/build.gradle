@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.github.dimorinny:floating-text-button:0.0.4'
 
     //MaterialSearchBar
-    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
+    implementation 'com.github.mancj:MaterialSearchBar:+'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "android.arch.core:core-testing:$rootProject.archLifecycleVersion"

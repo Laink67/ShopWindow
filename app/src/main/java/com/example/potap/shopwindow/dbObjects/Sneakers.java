@@ -14,7 +14,7 @@ public class Sneakers implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "name")
     private String name;

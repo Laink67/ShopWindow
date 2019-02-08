@@ -245,7 +245,7 @@ public abstract class DataManager extends RoomDatabase {
             mDao.insert(sneakers);
 
             sneakers = new Sneakers(
-                    "Nile Phantom Vision",
+                    "Nike Phantom Vision",
                     7990,
                     " Внутри новых бутс Nike Phantom находится встроенная сетка, которая считывает особенности стопы игрока, что придает невероятную посадку. Снаружи модели использован материал Flyknit, который придает невероятное сцепление и повышает уровень владения мячом. Невидимая снаружи шнуровка Ghost Lace обеспечивает оптимальный контакт с мячом.",
                     "Чёрный",
@@ -314,7 +314,7 @@ public abstract class DataManager extends RoomDatabase {
             mDao.insert(sneakers);
 
             sneakers = new Sneakers(
-                    " PRO BOUNCE MADNESS LOW 2019",
+                    "PRO BOUNCE MADNESS LOW 2019",
                     7990,
                     "Вдохновляйся энергией Кардиналс в этих баскетбольных кроссовках, созданных для маневренной игры. Текстильный верх с мягким голенищем надежно поддерживает щиколотку, а упругая промежуточная подошва амортизирует прыжки и дарит комфорт на площадке.",
                     "Красный",
