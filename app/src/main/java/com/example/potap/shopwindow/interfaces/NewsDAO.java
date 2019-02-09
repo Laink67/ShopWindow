@@ -12,13 +12,13 @@ import java.util.List;
 @Dao
 public interface NewsDAO {
 
-    @Query("SELECT * from news")
-    LiveData<List<News>> getNews();
+    @Query("SELECT * from News")
+    LiveData<List<News>> getAll();
 
     @Insert
     void insert(News word);
 
-    @Query("DELETE FROM news")
+    @Query("DELETE FROM News")
     void deleteAll();
 
 }

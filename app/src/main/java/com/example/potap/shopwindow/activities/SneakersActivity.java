@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
 import com.example.potap.shopwindow.dbObjects.Sneakers;
+import com.example.potap.shopwindow.viewmodels.SizesViewModel;
 import com.example.potap.shopwindow.viewmodels.SneakersViewModel;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 public class SneakersActivity extends AppCompatActivity {
 
     private SneakersViewModel sneakersViewModel;
+    private SizesViewModel sizesViewModel;
     private SneakersListAdapter adapter;
     private String title;
 
@@ -47,6 +49,7 @@ public class SneakersActivity extends AppCompatActivity {
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         sneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
+        sizesViewModel = ViewModelProviders.of(this).get(SizesViewModel.class);
 
         getSneakersForPage();
     }

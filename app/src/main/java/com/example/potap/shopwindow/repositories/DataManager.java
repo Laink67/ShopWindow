@@ -11,13 +11,15 @@ import android.support.annotation.NonNull;
 import com.example.potap.shopwindow.dbObjects.Categories;
 import com.example.potap.shopwindow.dbObjects.News;
 import com.example.potap.shopwindow.dbObjects.Orders;
+import com.example.potap.shopwindow.dbObjects.Sizes;
 import com.example.potap.shopwindow.dbObjects.Sneakers;
 import com.example.potap.shopwindow.interfaces.CategoriesDAO;
 import com.example.potap.shopwindow.interfaces.NewsDAO;
 import com.example.potap.shopwindow.interfaces.OrdersDAO;
+import com.example.potap.shopwindow.interfaces.SizesDAO;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
-@Database(entities = {Sneakers.class, Categories.class, News.class,Orders.class}, version = 2)
+@Database(entities = {Sneakers.class, Categories.class, News.class, Orders.class, Sizes.class}, version = 5)
 public abstract class DataManager extends RoomDatabase {
 
     public abstract SneakersDAO sneakersDAO();
@@ -28,6 +30,8 @@ public abstract class DataManager extends RoomDatabase {
 
     public abstract OrdersDAO ordersDAO();
 
+    public abstract SizesDAO sizesDAO();
+
     private static volatile DataManager INSTANCE;
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
@@ -36,12 +40,14 @@ public abstract class DataManager extends RoomDatabase {
         private final CategoriesDAO cDao;
         private final NewsDAO nDao;
         private final OrdersDAO oDAO;
+        private final SizesDAO sDao;
 
         PopulateDbAsync(DataManager db) {
             mDao = db.sneakersDAO();
             cDao = db.categoriesDAO();
             nDao = db.newsDAO();
             oDAO = db.ordersDAO();
+            sDao = db.sizesDAO();
         }
 
         @Override
@@ -51,18 +57,7 @@ public abstract class DataManager extends RoomDatabase {
             cDao.deleteAll();
             nDao.deleteAll();
             oDAO.deleteAll();
-
-            Orders orders = new Orders("Reebook",5000,"Камуфляж","https://cdn-images.farfetch-contents.com/11/86/73/35/11867335_8846357_480.jpg",1,43);
-            oDAO.insert(orders);
-
-            orders = new Orders("Nike",6000,"Белый","https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",1,43);
-            oDAO.insert(orders);
-            orders = new Orders("Nike",6000,"Белый","https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",1,43);
-            oDAO.insert(orders);
-            orders = new Orders("Nike",6000,"Белый","https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",1,43);
-            oDAO.insert(orders);
-            orders = new Orders("Nike",6000,"Белый","https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",1,43);
-            oDAO.insert(orders);
+            sDao.deleteAll();
 
             News news = new News("Распродажа", "https://www.idf-dutyfree.com/wp-content/uploads/2018/01/Big-Sale-NEWS-1-1100x485.jpg");
             nDao.insert(news);
@@ -104,6 +99,9 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(37, 1);  // Adding sizes
+            addSizes(36, 1);  // Adding sizes
+            addSizes(35, 1);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Adidas",
@@ -118,6 +116,9 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(33, 2);
+            addSizes(34, 2);  // Adding sizes
+            addSizes(32, 2);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Nike",
@@ -132,6 +133,9 @@ public abstract class DataManager extends RoomDatabase {
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg"
             );
             mDao.insert(sneakers);
+            addSizes(36, 2);  // Adding sizes
+            addSizes(38, 2);  // Adding sizes
+            addSizes(38.5, 2);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Reebook",
@@ -146,6 +150,8 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
             );
             mDao.insert(sneakers);
+            addSizes(36, 3);  // Adding sizes
+            addSizes(37.5, 3);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Reebook",
@@ -160,6 +166,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
             );
             mDao.insert(sneakers);
+            addSizes(41, 4);  // Adding sizes
+            addSizes(41.5, 4);  // Adding sizes
+            addSizes(42, 4);  // Adding sizes
+            addSizes(43, 4);  // Adding sizes
+            addSizes(44, 4);  // Adding sizes
+            addSizes(45, 4);  // Adding sizes
+            addSizes(46, 4);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Nike",
@@ -174,6 +187,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg"
             );
             mDao.insert(sneakers);
+            addSizes(41, 5);  // Adding sizes
+            addSizes(41.5, 5);  // Adding sizes
+            addSizes(42, 5);  // Adding sizes
+            addSizes(43, 5);  // Adding sizes
+            addSizes(44, 5);  // Adding sizes
+            addSizes(45, 5);  // Adding sizes
+            addSizes(46, 5);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Reebook",
@@ -188,33 +208,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
             );
             mDao.insert(sneakers);
-             sneakers = new Sneakers(
-                    "Reebook",
-                    5000,
-                    "Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара.",
-                    "Камуфляж",
-                    1,
-                    false,
-                     -1,
-                    "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
-                    "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
-                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
-            );
-            mDao.insert(sneakers);
-
-            sneakers = new Sneakers(
-                    "Reebook",
-                    5000,
-                    "Износостойкая подошва прослужит много километров, а промежуточная подошва из термополиуретана будет эффективно поглощать энергию удара.",
-                    "Камуфляж",
-                    1,
-                    true,
-                    -1,
-                    "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
-                    "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
-                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
-            );
-            mDao.insert(sneakers);
+            addSizes(41, 6);  // Adding sizes
+            addSizes(41.5, 6);  // Adding sizes
+            addSizes(42, 6);  // Adding sizes
+            addSizes(43, 6);  // Adding sizes
+            addSizes(44, 6);  // Adding sizes
+            addSizes(45, 6);  // Adding sizes
+            addSizes(46, 6);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Reebook",
@@ -229,6 +229,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
             );
             mDao.insert(sneakers);
+            addSizes(41, 7);  // Adding sizes
+            addSizes(41.5, 7);  // Adding sizes
+            addSizes(42, 7);  // Adding sizes
+            addSizes(43, 7);  // Adding sizes
+            addSizes(44, 7);  // Adding sizes
+            addSizes(45, 7);  // Adding sizes
+            addSizes(46, 7);  // Adding sizes
 
             sneakers = new Sneakers(
                     "PREDATOR 19.1 FG",
@@ -243,6 +250,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwa68692e2/zoom/F97529_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(41, 8);  // Adding sizes
+            addSizes(41.5, 8);  // Adding sizes
+            addSizes(42, 8);  // Adding sizes
+            addSizes(43, 8);  // Adding sizes
+            addSizes(44, 8);  // Adding sizes
+            addSizes(45, 8);  // Adding sizes
+            addSizes(46, 8);  // Adding sizes
 
             sneakers = new Sneakers(
                     "Nike Phantom Vision",
@@ -257,6 +271,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://render.nikeid.com/ir/render/nikeidrender/ACADEMYFA18_v6?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=141414&show&obj=/s/g2&color=141414&show&obj=/s/g7&color=141414&show&obj=/s/g14&color=141414&show&obj=/s/g16&color=141414&show&obj=/s/g3&color=1a1b1b&show&obj=/s/g5&color=212121&show&obj=/s/g4/solid&color=dafd17&show&obj=/s/g6&color=dafd17&show&obj=/s/g8/tlogo&color=dafd17&show&obj=/s/g13&color=212121&show&obj=/s/g9/mg&color=404040&show&obj=/s/g15&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500"
             );
             mDao.insert(sneakers);
+            addSizes(41, 9);  // Adding sizes
+            addSizes(41.5, 9);  // Adding sizes
+            addSizes(42, 9);  // Adding sizes
+            addSizes(43, 9);  // Adding sizes
+            addSizes(44, 9);  // Adding sizes
+            addSizes(45, 9);  // Adding sizes
+            addSizes(46, 9);  // Adding sizes
 
             sneakers = new Sneakers(
                     "PREDATOR 19.1 TR",
@@ -269,8 +290,13 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw3d5f711f/zoom/F35848_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw399c05cb/zoom/F35848_010_hover_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwb349990c/zoom/F35848_05_standard.jpg?sh=840&strip=false&sw=840"
-                    );
+            );
             mDao.insert(sneakers);
+            addSizes(42, 10);  // Adding sizes
+            addSizes(43, 10);  // Adding sizes
+            addSizes(44, 10);  // Adding sizes
+            addSizes(45, 10);  // Adding sizes
+            addSizes(46, 10);  // Adding sizes
 
             sneakers = new Sneakers(
                     "PREDATOR 19.1 FG",
@@ -285,8 +311,14 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw82de7c3d/zoom/D97997_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(42, 11);  // Adding sizes
+            addSizes(43, 11);  // Adding sizes
+            addSizes(44, 11);  // Adding sizes
+            addSizes(45, 11);  // Adding sizes
+            addSizes(46, 11);  // Adding sizes
 
-            sneakers = new Sneakers("Nike Mercurial Superfly VI",
+            sneakers = new Sneakers(
+                    "Nike Mercurial Superfly VI",
                     7990,
                     "Футбольные бутсы для игры на твердом грунте Nike Mercurial Superfly V обеспечивают отличную посадку, непревзойденное касание и потрясающее сцепление, позволяя развивать максимальную скорость на полях с короткой травой. Технология Dynamic Fit в области голеностопа обеспечивает плотную посадку и комфорт.",
                     "Красный",
@@ -298,6 +330,11 @@ public abstract class DataManager extends RoomDatabase {
                     "https://render.nikeid.com/ir/render/nikeidrender/SFLY6ACAD_v2?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=d83745&show&obj=/s/g2&color=da0b3a&show&obj=/s/g3&color=da0b3a&show&obj=/s/g4/met&color=dbdbdb&show&obj=/s/g6/met&color=dbdbdb&show&obj=/s/g7&color=252525&show&obj=/s/g10&color=ff3126&show&obj=/s/g5&color=141414&show&obj=/s/g9&color=ced4e1&show&obj=/s/g8/mg&color=d83745&show&obj=/s/g14&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500"
             );
             mDao.insert(sneakers);
+            addSizes(42, 12);  // Adding sizes
+            addSizes(43, 12);  // Adding sizes
+            addSizes(44, 12);  // Adding sizes
+            addSizes(45, 12);  // Adding sizes
+            addSizes(46, 12);  // Adding sizes
 
             sneakers = new Sneakers(
                     "N3XT L3V3L",
@@ -312,6 +349,11 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw5880efdf/zoom/BB9194_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(42, 13);  // Adding sizes
+            addSizes(43, 13);  // Adding sizes
+            addSizes(44, 13);  // Adding sizes
+            addSizes(45, 13);  // Adding sizes
+            addSizes(46, 13);  // Adding sizes
 
             sneakers = new Sneakers(
                     "PRO BOUNCE MADNESS LOW 2019",
@@ -326,6 +368,11 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw07126efc/zoom/BB9283_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(42, 14);  // Adding sizes
+            addSizes(43, 14);  // Adding sizes
+            addSizes(44, 14);  // Adding sizes
+            addSizes(45, 14);  // Adding sizes
+            addSizes(46, 14);  // Adding sizes
 
             sneakers = new Sneakers(
                     "STREETFLOW",
@@ -340,9 +387,19 @@ public abstract class DataManager extends RoomDatabase {
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwd61debcf/zoom/F36619_05_standard.jpg?sh=840&strip=false&sw=840"
             );
             mDao.insert(sneakers);
+            addSizes(42, 15);  // Adding sizes
+            addSizes(43, 15);  // Adding sizes
+            addSizes(44, 15);  // Adding sizes
+            addSizes(45, 15);  // Adding sizes
+            addSizes(46, 15);  // Adding sizes
 
             return null;
         }
+
+        private void addSizes(double size, int sneakersId) {
+            sDao.insert(new Sizes(size, sneakersId));
+        }
+
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
@@ -359,7 +416,7 @@ public abstract class DataManager extends RoomDatabase {
             synchronized (DataManager.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DataManager.class, "shopDB")
+                            DataManager.class, "shop_DataBase")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)

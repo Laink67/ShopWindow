@@ -23,12 +23,12 @@ public class SneakersRepository {
     private SneakersRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mSneakersDao = db.sneakersDAO();
-        mAllSneakers = mSneakersDao.getSneakers();
+        mAllSneakers = mSneakersDao.getAll();
     }
 
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Sneakers>> getAllSneakers() {
-        mAllSneakers = mSneakersDao.getSneakers();
+        mAllSneakers = mSneakersDao.getAll();
         return mAllSneakers;
     }
 

@@ -2,16 +2,9 @@ package com.example.potap.shopwindow.dbObjects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
-@Entity(tableName = "orders")
-public class Orders {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    private int id;
+@Entity(tableName = "Orders")
+public class Orders extends BaseObject{
 
     @ColumnInfo(name = "name")
     private String name;
@@ -29,15 +22,7 @@ public class Orders {
     private int quantity;
 
     @ColumnInfo(name = "size")
-    private int size;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private double size;
 
     public String getName() {
         return name;
@@ -71,11 +56,11 @@ public class Orders {
         this.quantity = quantity;
     }
 
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(double size) {
         this.size = size;
     }
 
@@ -87,12 +72,20 @@ public class Orders {
         this.color = color;
     }
 
-    public Orders(String name, int price, String color,String image, int quantity, int size) {
+    public Orders(String name, int price, String color,String image, int quantity, double size) {
         this.name = name;
         this.price = price;
         this.color = color;
         this.image = image;
         this.quantity = quantity;
         this.size = size;
+    }
+
+    public Orders(Sneakers sneakers){
+        this.name = sneakers.getName();
+        this.price =sneakers.getPrice();
+        this.color = sneakers.getColor();
+        this.image = sneakers.getImage();
+        this.quantity = 1;
     }
 }

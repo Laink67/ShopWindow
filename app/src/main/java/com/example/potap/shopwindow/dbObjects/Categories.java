@@ -2,27 +2,12 @@ package com.example.potap.shopwindow.dbObjects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity(tableName = "categories")
-public class Categories implements Serializable {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    private int id;
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+@Entity(tableName = "Categories")
+public class Categories extends BaseObject {
 
     @ColumnInfo(name = "title")
     private String title;
@@ -50,5 +35,4 @@ public class Categories implements Serializable {
         images.add(getImage());
         return images;
     }
-
 }

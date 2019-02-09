@@ -2,19 +2,12 @@ package com.example.potap.shopwindow.dbObjects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity(tableName = "sneakers")
-public class Sneakers implements Serializable {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    private int id;
+@Entity(tableName = "Sneakers")
+public class Sneakers extends BaseObject {
 
     @ColumnInfo(name = "name")
     private String name;
@@ -45,18 +38,8 @@ public class Sneakers implements Serializable {
 
     @ColumnInfo(name = "thirdImage")
     private String thirdImage;
-
-    public int getId() {
-        return this.id;
-    }
-
-/*
-    public void setId(int id) {
-        this.id = id;
-    }
-*/
-
-    public Sneakers(String name, int price, String description, String color, int gender, boolean child,int sport, String image, String secondImage, String thirdImage) {
+    
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, String image, String secondImage, String thirdImage) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -69,7 +52,7 @@ public class Sneakers implements Serializable {
         this.thirdImage = thirdImage;
     }
 
-    public Sneakers(String name, int price, String description, String color, int gender, boolean child,int sport, ArrayList<String> imagesLinks) {
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, ArrayList<String> imagesLinks) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -81,7 +64,6 @@ public class Sneakers implements Serializable {
         this.secondImage = imagesLinks.get(1);
         this.thirdImage = imagesLinks.get(2);
     }
-
 
     @NonNull
     public String getName() {

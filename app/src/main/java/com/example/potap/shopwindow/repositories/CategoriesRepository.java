@@ -23,7 +23,7 @@ public class CategoriesRepository {
     private CategoriesRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mCategoriesDAO = db.categoriesDAO();
-        mAllCategories = mCategoriesDAO.getCategories();
+        mAllCategories = mCategoriesDAO.getAll();
     }
 
     // Observed LiveData will notify the observer when the data has changed.

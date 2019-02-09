@@ -65,18 +65,6 @@ class CategoriesViewHolder extends RecyclerView.ViewHolder {
                 context.startActivity(intent);
             }
         });
-//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, InfoActivity.class);
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable(EXTRA_OBJECTS,current);
-//
-//                intent.putExtras(bundle);
-//                context.startActivity(intent);
-//            }
-//        });
     }
 
 

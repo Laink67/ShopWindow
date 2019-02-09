@@ -63,6 +63,7 @@
                 android:textStyle="bold" />
 
             <android.support.design.card.MaterialCardView
+                android:id="@+id/description_materialcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/price_info_text_view"
@@ -91,6 +92,48 @@
                 </RelativeLayout>
 
             </android.support.design.card.MaterialCardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/description_materialcard">
+
+                <TextView
+                    android:id="@+id/sizes_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/size" />
+
+                <HorizontalScrollView
+                    android:id="@+id/sizes_horizontal_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/sizes_title"
+                    android:layout_marginTop="8dp"
+                    >
+                    <RadioGroup
+                        android:id="@+id/sizes_radiogroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/sizes_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            tools:listitem="@layout/sizes_recylerview_item"/>
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/sizes_horizontal_scroll"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

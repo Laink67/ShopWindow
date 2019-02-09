@@ -23,7 +23,7 @@ public class NewsRepository {
     private NewsRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mNewsDAO = db.newsDAO();
-        mAllNews = mNewsDAO.getNews();
+        mAllNews = mNewsDAO.getAll();
     }
 
     // Observed LiveData will notify the observer when the data has changed.

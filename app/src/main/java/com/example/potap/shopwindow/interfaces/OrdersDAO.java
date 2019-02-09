@@ -12,21 +12,21 @@ import java.util.List;
 
 @Dao
 public interface OrdersDAO {
-    @Query("SELECT * from orders")
-    LiveData<List<Orders>> getOrders();
+    @Query("SELECT * from Orders")
+    LiveData<List<Orders>> getAll();
 
     @Insert
     void insert(Orders word);
 
-    @Query("DELETE FROM orders")
+    @Query("DELETE FROM Orders")
     void deleteAll();
 
     @Delete
     void delete(Orders order);
 
-    @Query("SELECT COUNT(*) FROM orders")
+    @Query("SELECT COUNT(*) FROM Orders")
     LiveData<Integer> getCount();
 
-    @Query("SELECT SUM(price) FROM orders")
+    @Query("SELECT SUM(price) FROM Orders")
     LiveData<Integer> getSum();
 }

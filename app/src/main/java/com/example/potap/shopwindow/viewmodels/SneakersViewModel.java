@@ -40,7 +40,7 @@ public class SneakersViewModel extends AndroidViewModel {
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> getSportSneakers(int sport){
+    public LiveData<List<Sneakers>> getSportSneakers(int sport) {
         mAllSneakers = mRepository.getSportSneakers(sport);
         return mAllSneakers;
     }
@@ -54,17 +54,17 @@ public class SneakersViewModel extends AndroidViewModel {
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> getSorted(int gender,boolean child,String column){
-        mAllSneakers = mRepository.getSorted(gender,child,column);
+    public LiveData<List<Sneakers>> getSorted(int gender, boolean child, String column) {
+        mAllSneakers = mRepository.getSorted(gender, child, column);
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> getSportSorted(int sport,String column){
-        mAllSneakers = mRepository.getSportSorted(sport,column);
+    public LiveData<List<Sneakers>> getSportSorted(int sport, String column) {
+        mAllSneakers = mRepository.getSportSorted(sport, column);
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> search(String searchString){
+    public LiveData<List<Sneakers>> search(String searchString) {
         mAllSneakers = mRepository.search(searchString);
         return mAllSneakers;
     }

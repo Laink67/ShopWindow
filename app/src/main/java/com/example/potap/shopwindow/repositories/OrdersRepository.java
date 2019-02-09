@@ -25,7 +25,7 @@ public class OrdersRepository {
     private OrdersRepository(Application application) {
         DataManager db = DataManager.getDatabase(application);
         mOrdersDao = db.ordersDAO();
-        mAllOrders = mOrdersDao.getOrders();
+        mAllOrders = mOrdersDao.getAll();
         ordersCount = mOrdersDao.getCount();
         ordersSum = mOrdersDao.getSum();
     }

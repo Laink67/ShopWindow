@@ -29,11 +29,9 @@ import static com.example.potap.shopwindow.activities.InfoActivity.EXTRA_OBJECTS
 public class SneakersListAdapter extends RecyclerView.Adapter<SneakersListAdapter.SneakersViewHolder> {
 
     class SneakersViewHolder extends RecyclerView.ViewHolder {
-        private final TextView nameItemView;
-        private final TextView priceItemView;
+        private final TextView nameItemView, priceItemView;
         private final CircleImageView image;
         private final RelativeLayout parentLayout;
-
 
         private SneakersViewHolder(View itemView) {
             super(itemView);

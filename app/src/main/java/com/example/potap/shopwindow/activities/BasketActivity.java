@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,9 +20,7 @@ public class BasketActivity extends AppCompatActivity {
 
     private OrdersViewModel mOrdersViewModel;
     private OrdersAdapter adapter;
-    private TextView resultQuantityTextView;
-    private TextView resultSumTextView;
-    private MaterialButton deleteOrderMaterialButton;
+    private TextView resultQuantityTextView, resultSumTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +28,9 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.basket_activity);
         resultQuantityTextView = findViewById(R.id.basket_all_number);
         resultSumTextView = findViewById(R.id.basket_sum);
-        deleteOrderMaterialButton = findViewById(R.id.delete_order_button);
         setUpToolbar();
 
         RecyclerView recyclerView = findViewById(R.id.basket_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         adapter = new OrdersAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,15 +47,6 @@ public class BasketActivity extends AppCompatActivity {
                 adapter.setOrders(orders);
             }
         });
-
-/*
-        deleteOrderMaterialButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-*/
 
         setOrderResult();  /*Запись результатов заказа(сумма,количество)*/
     }

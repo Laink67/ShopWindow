@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5728082cac956fc5c53410a1feb6d22b",
+    "identityHash": "255607ddf781084360f29626e2fa6572",
     "entities": [
       {
-        "tableName": "sneakers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `price` INTEGER NOT NULL, `color` TEXT, `gender` INTEGER NOT NULL, `child` INTEGER NOT NULL, `mainImage` TEXT, `secondImage` TEXT, `thirdImage` TEXT)",
+        "tableName": "Sneakers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, `price` INTEGER NOT NULL, `color` TEXT, `gender` INTEGER NOT NULL, `child` INTEGER NOT NULL, `sport` INTEGER NOT NULL, `mainImage` TEXT, `secondImage` TEXT, `thirdImage` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -51,6 +51,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "sport",
+            "columnName": "sport",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "image",
             "columnName": "mainImage",
             "affinity": "TEXT",
@@ -73,13 +79,13 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
       },
       {
-        "tableName": "categories",
+        "tableName": "Categories",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `mainImage` TEXT)",
         "fields": [
           {
@@ -111,7 +117,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "news",
+        "tableName": "News",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `mainImage` TEXT)",
         "fields": [
           {
@@ -143,7 +149,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "orders",
+        "tableName": "Orders",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `price` INTEGER NOT NULL, `image` TEXT, `color` TEXT, `quantity` INTEGER NOT NULL, `size` INTEGER NOT NULL)",
         "fields": [
           {
@@ -197,11 +203,55 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Sizes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `size` REAL NOT NULL, `sneakers_id` INTEGER NOT NULL, FOREIGN KEY(`sneakers_id`) REFERENCES `Sneakers`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sneakersId",
+            "columnName": "sneakers_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Sneakers",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "sneakers_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"5728082cac956fc5c53410a1feb6d22b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"255607ddf781084360f29626e2fa6572\")"
     ]
   }
 }

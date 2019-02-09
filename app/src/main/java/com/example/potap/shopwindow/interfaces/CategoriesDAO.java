@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface CategoriesDAO {
 
-    @Query("SELECT * from categories")
-    LiveData<List<Categories>> getCategories();
+    @Query("SELECT * from Categories")
+    LiveData<List<Categories>> getAll();
 
     @Insert
     void insert(Categories word);
