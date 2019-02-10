@@ -25,6 +25,8 @@
             android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.SearchActivity"
             android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.CheckoutActivity"
+            android:parentActivityName=".activities.BasketActivity"/>
     </application>
 
 </manifest>

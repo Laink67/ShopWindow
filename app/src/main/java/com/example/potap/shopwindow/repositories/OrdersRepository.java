@@ -16,8 +16,8 @@ public class OrdersRepository {
     private LiveData<Integer> ordersCount;
     private LiveData<Integer> ordersSum;
 
-    public static OrdersRepository getInstance(Application application){
-        if(instance == null)
+    public static OrdersRepository getInstance(Application application) {
+        if (instance == null)
             instance = new OrdersRepository(application);
         return instance;
     }
@@ -34,12 +34,34 @@ public class OrdersRepository {
         return mAllOrders;
     }
 
-    public LiveData<Integer> getCount(){ return ordersCount;}
+    public LiveData<Integer> getCount() {
+        return ordersCount;
+    }
 
-    public LiveData<Integer> getSum() {return ordersSum;}
+    public LiveData<Integer> getSum() {
+        return ordersSum;
+    }
 
     public void insert(Orders orders) {
         new InsertAsyncTask(mOrdersDao).execute(orders);
+    }
+
+    public void delete(int id) {
+        new DeleteAsyncTask(mOrdersDao).execute(id);
+    }
+
+    private static class DeleteAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private OrdersDAO mAsyncTaskDao;
+
+        DeleteAsyncTask(OrdersDAO dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
     }
 
     private static class InsertAsyncTask extends AsyncTask<Orders, Void, Void> {

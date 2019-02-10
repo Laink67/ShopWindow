@@ -31,4 +31,9 @@
     <string name="description">Описание</string>
     <string name="boys">Мальчикам</string>
     <string name="girls">Девочкам</string>
+    <string name="your_data">Ваши данные</string>
+    <string name="name_title">Имя</string>
+    <string name="second_name">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="e_mail">E-mail</string>
 </resources>

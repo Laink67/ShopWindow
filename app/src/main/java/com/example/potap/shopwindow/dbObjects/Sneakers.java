@@ -54,7 +54,7 @@ public class Sneakers extends BaseObject {
     private Integer categoriesId;
 
     @Ignore
-    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, String image, String secondImage, String thirdImage,@Nullable Integer categoriesId) {
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, String image, String secondImage, String thirdImage, @Nullable Integer categoriesId) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -68,7 +68,7 @@ public class Sneakers extends BaseObject {
         this.categoriesId = categoriesId;
     }
 
-    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, String image, String secondImage, String thirdImage, @Nullable Integer newsId,@Nullable Integer categoriesId) {
+    public Sneakers(String name, int price, String description, String color, int gender, boolean child, int sport, String image, String secondImage, String thirdImage, @Nullable Integer newsId, @Nullable Integer categoriesId) {
         this.name = name;
         this.price = price;
         this.description = description;

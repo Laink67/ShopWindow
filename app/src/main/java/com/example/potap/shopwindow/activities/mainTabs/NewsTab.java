@@ -21,7 +21,6 @@ import java.util.List;
 
 public class NewsTab extends Fragment {
 
-    private NewsViewModel mNewsViewModel;
     private NewsAdapter adapter;
 
     @Nullable
@@ -34,7 +33,7 @@ public class NewsTab extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         // Get a new or existing ViewModel from the ViewModelProvider.
-        mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
+        NewsViewModel mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
 
         // Add an observer on the LiveData returned by getAll.
         // The onChanged() method fires when the observed data changes and the activity is in the foreground.

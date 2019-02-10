@@ -21,12 +21,12 @@ public class SneakersViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Sneakers>> getSortedWithCategoriesId(int categoriesId, String column) {
-        mAllSneakers = mRepository.getSortedWithCategoriesId(categoriesId,column);
+        mAllSneakers = mRepository.getSortedWithCategoriesId(categoriesId, column);
         return mAllSneakers;
     }
 
     public LiveData<List<Sneakers>> getSortedWithNewsId(int newsId, String column) {
-        mAllSneakers = mRepository.getSortedWithNewsId(newsId,column);
+        mAllSneakers = mRepository.getSortedWithNewsId(newsId, column);
         return mAllSneakers;
     }
 

@@ -19,7 +19,6 @@ public class OrdersViewModel extends AndroidViewModel {
         super(application);
         mRepository = OrdersRepository.getInstance(application);
         mAllOrders = mRepository.getAllOrders();
-        LiveData<Integer> mOrdersCount = mRepository.getCount();
         mOrdersSum = mRepository.getSum();
     }
 
@@ -37,5 +36,9 @@ public class OrdersViewModel extends AndroidViewModel {
 
     public void insert(Orders orders) {
         mRepository.insert(orders);
+    }
+
+    public void delete(int id) {
+        mRepository.delete(id);
     }
 }

@@ -3,6 +3,7 @@ package com.example.potap.shopwindow.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.button.MaterialButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.dbObjects.Orders;
+import com.example.potap.shopwindow.viewmodels.OrdersViewModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,9 +24,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     class OrdersViewHolder extends RecyclerView.ViewHolder {
         private final TextView name, price, size, color, quantity;
         private final ImageView image;
-        private final MaterialButton deletMaterialButton;
+        private final MaterialButton deleteMaterialButton;
 
-        private OrdersViewHolder(View itemView) {
+        private OrdersViewHolder(final View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.basket_product_name);
             image = itemView.findViewById(R.id.basket_product_image);
@@ -32,23 +34,29 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             color = itemView.findViewById(R.id.basket_product_color);
             size = itemView.findViewById(R.id.basket_product_size);
             quantity = itemView.findViewById(R.id.basket_product_number);
-            deletMaterialButton = itemView.findViewById(R.id.delete_order_button);
+            deleteMaterialButton = itemView.findViewById(R.id.delete_order_button);
 
-
-            deletMaterialButton.setOnClickListener(new View.OnClickListener() {
+            deleteMaterialButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    removeOrder(getAdapterPosition());
+                    adapterPosition = getAdapterPosition();
+                    ordersViewModel.delete(mOrders.get(adapterPosition).getId());
+                    removeOrder(adapterPosition);
+
+                    Snackbar.make(itemView, "Removed from cart", Snackbar.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
+    private OrdersViewModel ordersViewModel;
+    private int adapterPosition;
     private final LayoutInflater mInflater;
     private List<Orders> mOrders = Collections.emptyList(); // Cached copy of words
 
-    public OrdersAdapter(Context context) {
+    public OrdersAdapter(Context context,OrdersViewModel ordersViewModel) {
         mInflater = LayoutInflater.from(context);
+        this.ordersViewModel = ordersViewModel;
     }
 
     @NonNull

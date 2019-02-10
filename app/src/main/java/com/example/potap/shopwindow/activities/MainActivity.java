@@ -14,7 +14,6 @@ import com.example.potap.shopwindow.adapter.MainPageAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainPageAdapter mainPageAdapter;
     TabLayout tabLayout;
     ViewPager viewPager;
 
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
 
         setUpToolbar();
-        mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
+        MainPageAdapter mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mainPageAdapter);
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.item_find:
                 Intent searchIntent = new Intent(this, SneakersActivity.class);
-                searchIntent.putExtra("title","Поиск");
+                searchIntent.putExtra("title", "Поиск");
                 startActivity(searchIntent);
                 return true;
             default:
@@ -69,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (toolbar != null)
             setSupportActionBar(toolbar);
-
-/*
-        toolbar.setNavigationOnClickListener(new NavigationIconClickListener(this, findViewById(R.id.product_grid)));
-*/
     }
 }
 

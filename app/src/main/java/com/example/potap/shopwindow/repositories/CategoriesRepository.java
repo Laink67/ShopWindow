@@ -14,7 +14,7 @@ public class CategoriesRepository {
     private CategoriesDAO mCategoriesDAO;
     private LiveData<List<Categories>> mAllCategories;
 
-    public static CategoriesRepository getInstance(Application application){
+    public static CategoriesRepository getInstance(Application application) {
         if (instance == null)
             instance = new CategoriesRepository(application);
         return instance;
@@ -34,11 +34,6 @@ public class CategoriesRepository {
     public void insert(Categories Categories) {
         new CategoriesRepository.InsertAsyncTask(mCategoriesDAO).execute(Categories);
     }
-
-//    public LiveData<List<Categories>> getSorted(String column) {
-//        mAllCategories = column.equals("name") ? mCategoriesDao.getSortedByName() : mCategoriesDao.getSortedByPrice();
-//        return mAllCategories;
-//    }
 
     private static class InsertAsyncTask extends AsyncTask<Categories, Void, Void> {
 

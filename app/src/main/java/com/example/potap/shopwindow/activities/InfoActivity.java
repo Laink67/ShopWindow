@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -35,13 +35,9 @@ public class InfoActivity extends AppCompatActivity {
 
     public static final String EXTRA_OBJECTS = "SneakersObjects";
 
-    private SizesViewModel sizesViewModel;
     private OrdersViewModel ordersViewModel;
     private SizesAdapter sizesAdapter;
-    private ArrayList<String> imagesLink = new ArrayList<String>();
-    private FloatingTextButton floatingTextButton;
     private RadioGroup radioGroup;
-    private RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +51,7 @@ public class InfoActivity extends AppCompatActivity {
 
         final Sneakers sneakers = (Sneakers) bundle.getSerializable(EXTRA_OBJECTS);
 
-        imagesLink = sneakers.getImagesLinks();
-
-//        imagesLink.addAll(arr);
+        ArrayList<String> imagesLink = sneakers.getImagesLinks();
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         DotsIndicator dotsIndicator = findViewById(R.id.dots_indicator);
@@ -73,14 +67,14 @@ public class InfoActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.text_view_info);
         TextView nameTextView = findViewById(R.id.name_info_text_view);
         TextView priceTextView = findViewById(R.id.price_info_text_view);
-        floatingTextButton = findViewById(R.id.add_to_basket_button);
+        FloatingTextButton floatingTextButton = findViewById(R.id.add_to_basket_button);
         radioGroup = findViewById(R.id.sizes_radiogroup);
 
         nameTextView.setText(sneakers.getName());
         priceTextView.setText(String.valueOf(sneakers.getPrice()));
         textView.setText(sneakers.getDescription());
 
-        sizesViewModel = ViewModelProviders.of(this).get(SizesViewModel.class);
+        SizesViewModel sizesViewModel = ViewModelProviders.of(this).get(SizesViewModel.class);
         ordersViewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
 
 
@@ -95,6 +89,8 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ordersViewModel.insert(getOrder(sneakers));
+
+                Snackbar.make(radioGroup, "Added to cart", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

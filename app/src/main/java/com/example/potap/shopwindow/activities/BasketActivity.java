@@ -2,11 +2,14 @@ package com.example.potap.shopwindow.activities;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.potap.shopwindow.R;
@@ -16,11 +19,15 @@ import com.example.potap.shopwindow.viewmodels.OrdersViewModel;
 
 import java.util.List;
 
+import ru.dimorinny.floatingtextbutton.FloatingTextButton;
+
 public class BasketActivity extends AppCompatActivity {
 
     private OrdersViewModel mOrdersViewModel;
     private OrdersAdapter adapter;
     private TextView resultQuantityTextView, resultSumTextView;
+    private FloatingTextButton floatingTextButton;
+    private MaterialButton deleteMaterialButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +35,25 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.basket_activity);
         resultQuantityTextView = findViewById(R.id.basket_all_number);
         resultSumTextView = findViewById(R.id.basket_sum);
-        setUpToolbar();
 
-        RecyclerView recyclerView = findViewById(R.id.basket_recyclerview);
-        adapter = new OrdersAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        floatingTextButton = findViewById(R.id.action_button);
+        floatingTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BasketActivity.this, CheckoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        setUpToolbar();
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         mOrdersViewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
+
+        RecyclerView recyclerView = findViewById(R.id.basket_recyclerview);
+        adapter = new OrdersAdapter(this, mOrdersViewModel);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Add an observer on the LiveData returned by getAll.
         // The onChanged() method fires when the observed data changes and the activity is in the foreground.

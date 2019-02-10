@@ -33,7 +33,7 @@ public class NewsRepository {
         return mAllNews;
     }
 
-    public  LiveData<News> getById(int id) {
+    public LiveData<News> getById(int id) {
         news = mNewsDAO.getById(id);
         return news;
     }

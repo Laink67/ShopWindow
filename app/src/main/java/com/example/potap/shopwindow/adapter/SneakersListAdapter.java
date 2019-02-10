@@ -16,9 +16,7 @@ import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.activities.InfoActivity;
 import com.example.potap.shopwindow.dbObjects.Sneakers;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -83,33 +81,9 @@ public class SneakersListAdapter extends RecyclerView.Adapter<SneakersListAdapte
         notifyDataSetChanged();
     }
 
-    public void getSorted(final String column) {
-        Collections.sort(mSneakers, new Comparator<Sneakers>() {
-            @Override
-            public int compare(Sneakers o1, Sneakers o2) {
-                if (column.equals("name"))
-                    return o1.getName().compareTo(o2.getName());
-                else
-                    return o1.getPrice() - o2.getPrice();
-            }
-        });
-        notifyDataSetChanged();
-    }
-
-
     @Override
     public int getItemCount() {
         return mSneakers.size();
-    }
-
-    private ArrayList<String> getImagesLink(Sneakers sneakers) {
-        ArrayList<String> imagesLink = new ArrayList<String>();
-
-        imagesLink.add(sneakers.getImage());
-        imagesLink.add(sneakers.getSecondImage());
-        imagesLink.add(sneakers.getThirdImage());
-
-        return imagesLink;
     }
 }
 

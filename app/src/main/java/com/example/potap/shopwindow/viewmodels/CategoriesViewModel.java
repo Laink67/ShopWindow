@@ -21,7 +21,6 @@ public class CategoriesViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Categories>> getAllCategories() {
-//        mAllCategories = mRepository.getAllCategories();
         return mAllCategories;
     }
 

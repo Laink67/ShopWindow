@@ -21,6 +21,9 @@ public interface OrdersDAO {
     @Query("DELETE FROM Orders")
     void deleteAll();
 
+    @Query("DELETE FROM Orders WHERE id =:id")
+    void delete(int id);
+
     @Delete
     void delete(Orders order);
 
