@@ -15,22 +15,28 @@ public interface SneakersDAO {
     @Query("SELECT * from Sneakers")
     LiveData<List<Sneakers>> getAll();
 
-    @Query("SELECT * from Sneakers WHERE gender = 1 AND child = :child AND sport = -1")
-    LiveData<List<Sneakers>> getSneakersForMale(boolean child);
+    @Query("SELECT * FROM Sneakers WHERE newsId = :id")
+    LiveData<List<Sneakers>> getByNewsId(int id);
 
-    @Query("SELECT * from Sneakers WHERE gender = 0 AND child = :child AND sport = -1")
-    LiveData<List<Sneakers>> getSneakersForFemale(boolean child);
-
-    @Query("SELECT * from Sneakers WHERE child = :child")
-    LiveData<List<Sneakers>> getSneakersForChildren(boolean child);
-
-    @Query("SELECT * FROM Sneakers WHERE sport = :sport")
-    LiveData<List<Sneakers>> getSportSneakers(int sport);
+    @Query("SELECT * FROM Sneakers WHERE categoriesId = :id")
+    LiveData<List<Sneakers>> getByCategoriesId(int id);
 
     @Insert
     void insert(Sneakers word);
 
     //SORT
+    @Query("SELECT * FROM Sneakers WHERE categoriesId =:id ORDER BY name")
+    LiveData<List<Sneakers>> getSortedWithCategoriesIdByName(int id);
+
+    @Query("SELECT * FROM Sneakers WHERE categoriesId =:id ORDER BY price")
+    LiveData<List<Sneakers>> getSortedWithCategoriesIdByPrice(int id);
+
+    @Query("SELECT * FROM Sneakers WHERE newsId =:id ORDER BY price")
+    LiveData<List<Sneakers>> getSortedWithNewsIdByPrice(int id);
+
+    @Query("SELECT * FROM Sneakers WHERE newsId =:id ORDER BY name")
+    LiveData<List<Sneakers>> getSortedWithNewsIdByName(int id);
+
     @Query("SELECT * from Sneakers ORDER BY price ASC")
     LiveData<List<Sneakers>> getSortedByPrice();
 
@@ -48,13 +54,8 @@ public interface SneakersDAO {
 
     @Query("SELECT * from Sneakers ORDER BY name ASC")
     LiveData<List<Sneakers>> getSortedByName();
-
-    @Query("SELECT * FROM Sneakers WHERE sport = :sport ORDER BY name")
-    LiveData<List<Sneakers>> getSportSortedByName(int sport);
-
-    @Query("SELECT * FROM Sneakers WHERE sport = :sport ORDER BY price")
-    LiveData<List<Sneakers>> getSportSortedByPrice(int sport);
-//
+    
+    //
     @Query("DELETE FROM Sneakers")
     void deleteAll();
 

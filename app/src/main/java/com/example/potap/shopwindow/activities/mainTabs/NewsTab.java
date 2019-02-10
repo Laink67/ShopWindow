@@ -27,12 +27,12 @@ public class NewsTab extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.news_fragment,container,false);
+        View view = inflater.inflate(R.layout.news_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.news_recyclerview);
         adapter = new NewsAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        
+
         // Get a new or existing ViewModel from the ViewModelProvider.
         mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
 

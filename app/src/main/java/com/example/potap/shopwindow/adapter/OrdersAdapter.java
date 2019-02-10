@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.dbObjects.Orders;
-import com.example.potap.shopwindow.viewmodels.OrdersViewModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +23,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         private final TextView name, price, size, color, quantity;
         private final ImageView image;
         private final MaterialButton deletMaterialButton;
-        private OrdersViewModel ordersViewModel;
 
         private OrdersViewHolder(View itemView) {
             super(itemView);
@@ -78,7 +76,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         notifyDataSetChanged();
     }
 
-    public void removeOrder(int position){
+    private void removeOrder(int position) {
         mOrders.remove(position);
         notifyItemRemoved(position);
     }

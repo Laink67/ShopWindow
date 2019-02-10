@@ -19,7 +19,7 @@ import com.example.potap.shopwindow.interfaces.OrdersDAO;
 import com.example.potap.shopwindow.interfaces.SizesDAO;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
-@Database(entities = {Sneakers.class, Categories.class, News.class, Orders.class, Sizes.class}, version = 5)
+@Database(entities = {Sneakers.class, Categories.class, News.class, Orders.class, Sizes.class}, version = 9)
 public abstract class DataManager extends RoomDatabase {
 
     public abstract SneakersDAO sneakersDAO();
@@ -96,7 +96,8 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw19d10e3e/zoom/F36202_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw6cc57f23/zoom/F36202_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840",
+                    1
             );
             mDao.insert(sneakers);
             addSizes(37, 1);  // Adding sizes
@@ -113,7 +114,9 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw19d10e3e/zoom/F36202_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw6cc57f23/zoom/F36202_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw1b39c2f4/zoom/F36202_05_standard.jpg?sh=840&strip=false&sw=840",
+                    1,
+                    3
             );
             mDao.insert(sneakers);
             addSizes(33, 2);
@@ -130,7 +133,8 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/vjsleghax3228bpidanh/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
-                    "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg"
+                    "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
+                    1
             );
             mDao.insert(sneakers);
             addSizes(36, 2);  // Adding sizes
@@ -147,7 +151,9 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
                     "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
-                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
+                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false",
+                    2,
+                    1
             );
             mDao.insert(sneakers);
             addSizes(36, 3);  // Adding sizes
@@ -163,7 +169,9 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
                     "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
-                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
+                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false",
+                    2,
+                    2
             );
             mDao.insert(sneakers);
             addSizes(41, 4);  // Adding sizes
@@ -184,7 +192,9 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/exia9iydaqjh0to4wyha/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
                     "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/vjsleghax3228bpidanh/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
-                    "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg"
+                    "https://c.static-nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/hceo3c2wio68caxjxjwq/%D0%BA%D1%80%D0%BE%D1%81%D1%81%D0%BE%D0%B2%D0%BA%D0%B8-air-monarch-4-pr-lC42Cv.jpg",
+                    2,
+                    2
             );
             mDao.insert(sneakers);
             addSizes(41, 5);  // Adding sizes
@@ -205,7 +215,8 @@ public abstract class DataManager extends RoomDatabase {
                     -1,
                     "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
                     "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
-                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
+                    "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false",
+                    2
             );
             mDao.insert(sneakers);
             addSizes(41, 6);  // Adding sizes
@@ -227,6 +238,7 @@ public abstract class DataManager extends RoomDatabase {
                     "http://www.sneakerwatch.com/images/size_fs/video-026242.jpg",
                     "http://u8.filesonload.ru/eea2d99d18b0568e86cb408aaf1f1cea/acbff98b95d87c867601cf14eb2ff148.jpg",
                     "https://www.reebok.co.nz/dis/dw/image/v2/AAJP_PRD/on/demandware.static/-/Sites-reebok-products/default/dwd2261105/zoom/BD4221_01.jpg?sh=600&strip=false"
+                    , 2
             );
             mDao.insert(sneakers);
             addSizes(41, 7);  // Adding sizes
@@ -247,7 +259,9 @@ public abstract class DataManager extends RoomDatabase {
                     0,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw04029179/zoom/F97529_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwa80c5b21/zoom/F97529_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwa68692e2/zoom/F97529_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwa68692e2/zoom/F97529_05_standard.jpg?sh=840&strip=false&sw=840",
+                    3,
+                    4
             );
             mDao.insert(sneakers);
             addSizes(41, 8);  // Adding sizes
@@ -268,7 +282,8 @@ public abstract class DataManager extends RoomDatabase {
                     0,
                     "https://render.nikeid.com/ir/render/nikeidrender/ACADEMYFA18_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=141414&show&obj=/s/g2&color=141414&show&obj=/s/g7&color=141414&show&obj=/s/g14&color=141414&show&obj=/s/g16&color=141414&show&obj=/s/g3&color=1a1b1b&show&obj=/s/g5&color=212121&show&obj=/s/g4/solid&color=dafd17&show&obj=/s/g6&color=dafd17&show&obj=/s/g8/tlogo&color=dafd17&show&obj=/s/g13&color=212121&show&obj=/s/g9/mg&color=404040&show&obj=/s/g15&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
                     "https://render.nikeid.com/ir/render/nikeidrender/ACADEMYFA18_v2?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=141414&show&obj=/s/g2&color=141414&show&obj=/s/g7&color=141414&show&obj=/s/g14&color=141414&show&obj=/s/g16&color=141414&show&obj=/s/g3&color=1a1b1b&show&obj=/s/g5&color=212121&show&obj=/s/g4/solid&color=dafd17&show&obj=/s/g6&color=dafd17&show&obj=/s/g8/tlogo&color=dafd17&show&obj=/s/g13&color=212121&show&obj=/s/g9/mg&color=404040&show&obj=/s/g15&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
-                    "https://render.nikeid.com/ir/render/nikeidrender/ACADEMYFA18_v6?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=141414&show&obj=/s/g2&color=141414&show&obj=/s/g7&color=141414&show&obj=/s/g14&color=141414&show&obj=/s/g16&color=141414&show&obj=/s/g3&color=1a1b1b&show&obj=/s/g5&color=212121&show&obj=/s/g4/solid&color=dafd17&show&obj=/s/g6&color=dafd17&show&obj=/s/g8/tlogo&color=dafd17&show&obj=/s/g13&color=212121&show&obj=/s/g9/mg&color=404040&show&obj=/s/g15&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500"
+                    "https://render.nikeid.com/ir/render/nikeidrender/ACADEMYFA18_v6?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=141414&show&obj=/s/g2&color=141414&show&obj=/s/g7&color=141414&show&obj=/s/g14&color=141414&show&obj=/s/g16&color=141414&show&obj=/s/g3&color=1a1b1b&show&obj=/s/g5&color=212121&show&obj=/s/g4/solid&color=dafd17&show&obj=/s/g6&color=dafd17&show&obj=/s/g8/tlogo&color=dafd17&show&obj=/s/g13&color=212121&show&obj=/s/g9/mg&color=404040&show&obj=/s/g15&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
+                    4
             );
             mDao.insert(sneakers);
             addSizes(41, 9);  // Adding sizes
@@ -289,7 +304,8 @@ public abstract class DataManager extends RoomDatabase {
                     0,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw3d5f711f/zoom/F35848_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw399c05cb/zoom/F35848_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwb349990c/zoom/F35848_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwb349990c/zoom/F35848_05_standard.jpg?sh=840&strip=false&sw=840",
+                    4
             );
             mDao.insert(sneakers);
             addSizes(42, 10);  // Adding sizes
@@ -308,7 +324,9 @@ public abstract class DataManager extends RoomDatabase {
                     0,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwebc47cb1/zoom/D97997_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwa29fc590/zoom/D97997_02_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw82de7c3d/zoom/D97997_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw82de7c3d/zoom/D97997_05_standard.jpg?sh=840&strip=false&sw=840",
+                    3,
+                    4
             );
             mDao.insert(sneakers);
             addSizes(42, 11);  // Adding sizes
@@ -327,7 +345,9 @@ public abstract class DataManager extends RoomDatabase {
                     0,
                     "https://render.nikeid.com/ir/render/nikeidrender/SFLY6ACAD_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=d83745&show&obj=/s/g2&color=da0b3a&show&obj=/s/g3&color=da0b3a&show&obj=/s/g4/met&color=dbdbdb&show&obj=/s/g6/met&color=dbdbdb&show&obj=/s/g7&color=252525&show&obj=/s/g10&color=ff3126&show&obj=/s/g5&color=141414&show&obj=/s/g9&color=ced4e1&show&obj=/s/g8/mg&color=d83745&show&obj=/s/g14&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
                     "https://render.nikeid.com/ir/render/nikeidrender/SFLY6ACAD_v4?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=d83745&show&obj=/s/g2&color=da0b3a&show&obj=/s/g3&color=da0b3a&show&obj=/s/g4/met&color=dbdbdb&show&obj=/s/g6/met&color=dbdbdb&show&obj=/s/g7&color=252525&show&obj=/s/g10&color=ff3126&show&obj=/s/g5&color=141414&show&obj=/s/g9&color=ced4e1&show&obj=/s/g8/mg&color=d83745&show&obj=/s/g14&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
-                    "https://render.nikeid.com/ir/render/nikeidrender/SFLY6ACAD_v2?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=d83745&show&obj=/s/g2&color=da0b3a&show&obj=/s/g3&color=da0b3a&show&obj=/s/g4/met&color=dbdbdb&show&obj=/s/g6/met&color=dbdbdb&show&obj=/s/g7&color=252525&show&obj=/s/g10&color=ff3126&show&obj=/s/g5&color=141414&show&obj=/s/g9&color=ced4e1&show&obj=/s/g8/mg&color=d83745&show&obj=/s/g14&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500"
+                    "https://render.nikeid.com/ir/render/nikeidrender/SFLY6ACAD_v2?obj=/s/shadow/shad&show&color=000000&obj=/s/g1&color=d83745&show&obj=/s/g2&color=da0b3a&show&obj=/s/g3&color=da0b3a&show&obj=/s/g4/met&color=dbdbdb&show&obj=/s/g6/met&color=dbdbdb&show&obj=/s/g7&color=252525&show&obj=/s/g10&color=ff3126&show&obj=/s/g5&color=141414&show&obj=/s/g9&color=ced4e1&show&obj=/s/g8/mg&color=d83745&show&obj=/s/g14&color=141414&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500",
+                    3,
+                    4
             );
             mDao.insert(sneakers);
             addSizes(42, 12);  // Adding sizes
@@ -346,7 +366,8 @@ public abstract class DataManager extends RoomDatabase {
                     1,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw9babb836/zoom/BB9194_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw2a44d743/zoom/BB9194_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw5880efdf/zoom/BB9194_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw5880efdf/zoom/BB9194_05_standard.jpg?sh=840&strip=false&sw=840",
+                    5
             );
             mDao.insert(sneakers);
             addSizes(42, 13);  // Adding sizes
@@ -365,7 +386,9 @@ public abstract class DataManager extends RoomDatabase {
                     1,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwf39583c9/zoom/BB9283_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw2ade6775/zoom/BB9283_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw07126efc/zoom/BB9283_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw07126efc/zoom/BB9283_05_standard.jpg?sh=840&strip=false&sw=840",
+                    4,
+                    5
             );
             mDao.insert(sneakers);
             addSizes(42, 14);  // Adding sizes
@@ -384,7 +407,8 @@ public abstract class DataManager extends RoomDatabase {
                     1,
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwd526cd24/zoom/F36619_01_standard.jpg?sh=840&strip=false&sw=840",
                     "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw106bdcf2/zoom/F36619_010_hover_standard.jpg?sh=840&strip=false&sw=840",
-                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwd61debcf/zoom/F36619_05_standard.jpg?sh=840&strip=false&sw=840"
+                    "https://www.adidas.ru/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwd61debcf/zoom/F36619_05_standard.jpg?sh=840&strip=false&sw=840",
+                    5
             );
             mDao.insert(sneakers);
             addSizes(42, 15);  // Adding sizes

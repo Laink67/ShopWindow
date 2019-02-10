@@ -22,25 +22,38 @@ import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder> {
 
-class CategoriesViewHolder extends RecyclerView.ViewHolder {
-    private final TextView nameItemView;
-    private final ImageView image;
-    private final MaterialCardView materialCardView;
+    class CategoriesViewHolder extends RecyclerView.ViewHolder {
+        private final TextView nameItemView;
+        private final ImageView image;
+        private final MaterialCardView materialCardView;
 
 
-    private CategoriesViewHolder(View itemView) {
-        super(itemView);
-        nameItemView = itemView.findViewById(R.id.categories_text_view);
-        image = itemView.findViewById(R.id.categories_image);
-        materialCardView = itemView.findViewById(R.id.categories_material_card);
+        private CategoriesViewHolder(View itemView) {
+            super(itemView);
+            nameItemView = itemView.findViewById(R.id.categories_text_view);
+            image = itemView.findViewById(R.id.categories_image);
+            materialCardView = itemView.findViewById(R.id.categories_material_card);
+
+            materialCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SneakersActivity.class);
+                    intent.putExtra("title", mCategories.get(getAdapterPosition()).getTitle());
+                    intent.putExtra("categoriesId", mCategories.get(getAdapterPosition()).getId());
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
-}
+
 
     private final LayoutInflater mInflater;
+    private Context context;
     private List<Categories> mCategories = Collections.emptyList(); // Cached copy of words
 
     public CategoriesAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @NonNull
@@ -56,15 +69,6 @@ class CategoriesViewHolder extends RecyclerView.ViewHolder {
         final Categories current = mCategories.get(position);
         Glide.with(context).asBitmap().load(current.getImage()).into(holder.image);
         holder.nameItemView.setText(current.getTitle());
-
-        holder.materialCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, SneakersActivity.class);
-                intent.putExtra("title",current.getTitle());
-                context.startActivity(intent);
-            }
-        });
     }
 
 

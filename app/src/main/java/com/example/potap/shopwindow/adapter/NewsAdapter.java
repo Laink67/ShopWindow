@@ -1,6 +1,7 @@
 package com.example.potap.shopwindow.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.potap.shopwindow.R;
+import com.example.potap.shopwindow.activities.SneakersActivity;
 import com.example.potap.shopwindow.dbObjects.News;
 
 import java.util.Collections;
@@ -30,14 +32,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             nameItemView = itemView.findViewById(R.id.news_text_view);
             image = itemView.findViewById(R.id.news_image);
             materialCardView = itemView.findViewById(R.id.news_material_card);
+
+            materialCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SneakersActivity.class);
+                    intent.putExtra("title",nameItemView.getText().toString());
+                    intent.putExtra("newsId", mNews.get(getAdapterPosition()).getId());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
     private final LayoutInflater mInflater;
+    private Context context;
     private List<News> mNews = Collections.emptyList(); // Cached copy of words
 
     public NewsAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @NonNull
@@ -53,19 +67,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         final News current = mNews.get(position);
         Glide.with(context).asBitmap().load(current.getImage()).into(holder.image);
         holder.nameItemView.setText(current.getTitle());
-
-//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, InfoActivity.class);
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable(EXTRA_OBJECTS,current);
-//
-//                intent.putExtras(bundle);
-//                context.startActivity(intent);
-//            }
-//        });
     }
 
 

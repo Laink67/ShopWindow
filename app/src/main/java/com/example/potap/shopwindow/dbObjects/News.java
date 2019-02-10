@@ -2,6 +2,7 @@ package com.example.potap.shopwindow.dbObjects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class News extends BaseObject {
         this.title = title;
         this.image = image;
     }
+
+    @Ignore
+    public News(){}
 
     @NonNull
     public String getTitle() {

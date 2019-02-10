@@ -18,17 +18,15 @@ import android.widget.TextView;
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.SneakersListAdapter;
 import com.example.potap.shopwindow.dbObjects.Sneakers;
-import com.example.potap.shopwindow.viewmodels.SizesViewModel;
 import com.example.potap.shopwindow.viewmodels.SneakersViewModel;
 
 import java.util.List;
 
 public class SneakersActivity extends AppCompatActivity {
-
     private SneakersViewModel sneakersViewModel;
-    private SizesViewModel sizesViewModel;
     private SneakersListAdapter adapter;
     private String title;
+    private int newsId, categoriesId;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -39,7 +37,10 @@ public class SneakersActivity extends AppCompatActivity {
 
         setUpToolbar();
 
-        title = getIntent().getExtras().getString("title");
+        Bundle bundle = getIntent().getExtras();
+        newsId = bundle.getInt("newsId");
+        categoriesId = bundle.getInt("categoriesId");
+        title = bundle.getString("title");
         titleTextView.setText(title);
 
         adapter = new SneakersListAdapter(this);
@@ -49,77 +50,34 @@ public class SneakersActivity extends AppCompatActivity {
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         sneakersViewModel = ViewModelProviders.of(this).get(SneakersViewModel.class);
-        sizesViewModel = ViewModelProviders.of(this).get(SizesViewModel.class);
 
         getSneakersForPage();
     }
 
     private void getSneakersForPage() {
-        switch (title) {
-            case "Женщинам":
-                getFemaleSneakers();
-                break;
-            case "Мужчинам":
-                getMaleSneakers();
-                break;
-            case "Детям":
-                getChildrenSneakers();
-                break;
-            case "Футбол":
-                getSportSneakers(0);
-                break;
-            case "Баскетбол":
-                getSportSneakers(1);
-                break;
-            default:
-                getAllSneakers();
-                break;
+
+        if (newsId != 0) {
+            sneakersViewModel.getByNewsId(newsId).observe(this, new Observer<List<Sneakers>>() {
+                @Override
+                public void onChanged(@Nullable List<Sneakers> sneakers) {
+                    adapter.setSneakers(sneakers);
+                }
+            });
+        } else if (categoriesId != 0) {
+            sneakersViewModel.getByCategoriesId(categoriesId).observe(this, new Observer<List<Sneakers>>() {
+                @Override
+                public void onChanged(@Nullable List<Sneakers> sneakers) {
+                    adapter.setSneakers(sneakers);
+                }
+            });
+        } else {
+            sneakersViewModel.getAllSneakers().observe(this, new Observer<List<Sneakers>>() {
+                @Override
+                public void onChanged(@Nullable List<Sneakers> sneakers) {
+                    adapter.setSneakers(sneakers);
+                }
+            });
         }
-    }
-
-    private void getAllSneakers() {
-        sneakersViewModel.getAllSneakers().observe(this, new Observer<List<Sneakers>>() {
-            @Override
-            public void onChanged(@Nullable List<Sneakers> sneakers) {
-                adapter.setSneakers(sneakers);
-            }
-        });
-    }
-
-    private void getFemaleSneakers() {
-        sneakersViewModel.getFemaleSneakers().observe(this, new Observer<List<Sneakers>>() {
-            @Override
-            public void onChanged(@Nullable List<Sneakers> femaleSneakers) {
-                adapter.setSneakers(femaleSneakers);
-            }
-        });
-    }
-
-    private void getMaleSneakers() {
-        sneakersViewModel.getMaleSneakers().observe(this, new Observer<List<Sneakers>>() {
-            @Override
-            public void onChanged(@Nullable List<Sneakers> maleSneakers) {
-                adapter.setSneakers(maleSneakers);
-            }
-        });
-    }
-
-    private void getChildrenSneakers() {
-        sneakersViewModel.getChildrenSneakers().observe(this, new Observer<List<Sneakers>>() {
-            @Override
-            public void onChanged(@Nullable List<Sneakers> childrenSneakers) {
-                adapter.setSneakers(childrenSneakers);
-            }
-        });
-    }
-
-    private void getSportSneakers(int sport) {
-        sneakersViewModel.getSportSneakers(sport).observe(this, new Observer<List<Sneakers>>() {
-            @Override
-            public void onChanged(@Nullable List<Sneakers> sportSneakers) {
-                adapter.setSneakers(sportSneakers);
-            }
-        });
     }
 
     @Override
@@ -131,13 +89,68 @@ public class SneakersActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (title.equals("Футбол") || title.equals("Баскетбол"))
-            return getMenuSport(item);
-        else if (title.equals("Поиск"))
+        if (categoriesId != 0)
+            return getMenuForCategories(item);
+        else if (newsId != 0) {
+            return getMenuForNews(item);
+        } else if (title.equals("Поиск"))
             return getMenuForSearch(item);
         else
             return getMenuForMaleAndFemale(item);
     }
+
+    private boolean getMenuForCategories(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bascet:
+                goToBasket();
+                return true;
+            case R.id.item_sort_a_z:
+                sneakersViewModel.getSortedWithCategoriesId(categoriesId, "name").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            case R.id.item_sort_price:
+                sneakersViewModel.getSortedWithCategoriesId(categoriesId, "price").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private boolean getMenuForNews(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bascet:
+                goToBasket();
+                return true;
+            case R.id.item_sort_a_z:
+                sneakersViewModel.getSortedWithNewsId(newsId, "name").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            case R.id.item_sort_price:
+                sneakersViewModel.getSortedWithNewsId(newsId, "price").observe(this, new Observer<List<Sneakers>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Sneakers> sneakers) {
+                        adapter.setSneakers(sneakers);
+                    }
+                });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private boolean getMenuForSearch(MenuItem item) {
 
@@ -184,34 +197,6 @@ public class SneakersActivity extends AppCompatActivity {
                 return true;
             case R.id.item_sort_price:
                 sneakersViewModel.getSorted(gender, child, "price").observe(this, new Observer<List<Sneakers>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-                        adapter.setSneakers(sneakers);
-                    }
-                });
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private boolean getMenuSport(MenuItem item) {
-        final int sport = title.equals("Футбол") ? 0 : 1;
-
-        switch (item.getItemId()) {
-            case R.id.bascet:
-                goToBasket();
-                return true;
-            case R.id.item_sort_a_z:
-                sneakersViewModel.getSportSorted(sport, "name").observe(this, new Observer<List<Sneakers>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Sneakers> sneakers) {
-                        adapter.setSneakers(sneakers);
-                    }
-                });
-                return true;
-            case R.id.item_sort_price:
-                sneakersViewModel.getSportSorted(sport, "price").observe(this, new Observer<List<Sneakers>>() {
                     @Override
                     public void onChanged(@Nullable List<Sneakers> sneakers) {
                         adapter.setSneakers(sneakers);

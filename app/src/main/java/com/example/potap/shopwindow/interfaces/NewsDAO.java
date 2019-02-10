@@ -21,4 +21,6 @@ public interface NewsDAO {
     @Query("DELETE FROM News")
     void deleteAll();
 
+    @Query("SELECT * from News WHERE id =:id")
+    LiveData<News> getById(int id);
 }

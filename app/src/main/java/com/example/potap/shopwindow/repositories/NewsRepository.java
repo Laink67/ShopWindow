@@ -13,6 +13,7 @@ public class NewsRepository {
     private static NewsRepository instance;
     private NewsDAO mNewsDAO;
     private LiveData<List<News>> mAllNews;
+    private LiveData<News> news;
 
     public static NewsRepository getInstance(Application application) {
         if (instance == null)
@@ -24,6 +25,7 @@ public class NewsRepository {
         DataManager db = DataManager.getDatabase(application);
         mNewsDAO = db.newsDAO();
         mAllNews = mNewsDAO.getAll();
+        news = mNewsDAO.getById(1);
     }
 
     // Observed LiveData will notify the observer when the data has changed.
@@ -31,14 +33,14 @@ public class NewsRepository {
         return mAllNews;
     }
 
+    public  LiveData<News> getById(int id) {
+        news = mNewsDAO.getById(id);
+        return news;
+    }
+
     public void insert(News news) {
         new NewsRepository.InsertAsyncTask(mNewsDAO).execute(news);
     }
-
-//    public LiveData<List<Categories>> getSorted(String column) {
-//        mAllCategories = column.equals("name") ? mCategoriesDao.getSortedByName() : mCategoriesDao.getSortedByPrice();
-//        return mAllCategories;
-//    }
 
     private static class InsertAsyncTask extends AsyncTask<News, Void, Void> {
 

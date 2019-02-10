@@ -26,29 +26,19 @@ public class SneakersRepository {
         mAllSneakers = mSneakersDao.getAll();
     }
 
+    public LiveData<List<Sneakers>> getByCategoriesId(int id) {
+        mAllSneakers = mSneakersDao.getByCategoriesId(id);
+        return mAllSneakers;
+    }
+
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Sneakers>> getAllSneakers() {
         mAllSneakers = mSneakersDao.getAll();
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> getMaleSneakers() {
-        mAllSneakers = mSneakersDao.getSneakersForMale(false);
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getFemaleSneakers() {
-        mAllSneakers = mSneakersDao.getSneakersForFemale(false);
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getChildrenSneakers() {
-        mAllSneakers = mSneakersDao.getSneakersForChildren(true);
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getSportSneakers(int sport) {
-        mAllSneakers = mSneakersDao.getSportSneakers(sport);
+    public LiveData<List<Sneakers>> getByNewsId(int id) {
+        mAllSneakers = mSneakersDao.getByNewsId(id);
         return mAllSneakers;
     }
 
@@ -56,17 +46,23 @@ public class SneakersRepository {
         new InsertAsyncTask(mSneakersDao).execute(sneakers);
     }
 
+    public LiveData<List<Sneakers>> getSortedWithCategoriesId(int categoriesId, String column) {
+        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedWithCategoriesIdByName(categoriesId) :
+                mSneakersDao.getSortedWithCategoriesIdByPrice(categoriesId);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSortedWithNewsId(int newsId, String column) {
+        mAllSneakers = column.equals("name") ? mSneakersDao.getSortedWithNewsIdByName(newsId) :
+                mSneakersDao.getSortedWithNewsIdByPrice(newsId);
+        return mAllSneakers;
+    }
 
     public LiveData<List<Sneakers>> getSorted(int gender, boolean child, String column) {
         if (child)
             mAllSneakers = column.equals("name") ? mSneakersDao.getSortedChildrenByName(true) : mSneakersDao.getSortedChildrenByPrice(true);
         else
             mAllSneakers = column.equals("name") ? mSneakersDao.getSortedByName(gender, false) : mSneakersDao.getSortedByPrice(gender, false);
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getSportSorted(int sport, String column) {
-        mAllSneakers = column.equals("name") ? mSneakersDao.getSportSortedByName(sport) : mSneakersDao.getSportSortedByPrice(sport);
         return mAllSneakers;
     }
 
@@ -80,7 +76,7 @@ public class SneakersRepository {
         return mAllSneakers;
     }
 
-    public LiveData<List<Sneakers>> search(String searchString){
+    public LiveData<List<Sneakers>> search(String searchString) {
         searchString = "%" + searchString + "%";
         mAllSneakers = mSneakersDao.search(searchString);
         return mAllSneakers;

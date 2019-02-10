@@ -20,28 +20,28 @@ public class SneakersViewModel extends AndroidViewModel {
         mAllSneakers = mRepository.getAllSneakers();
     }
 
+    public LiveData<List<Sneakers>> getSortedWithCategoriesId(int categoriesId, String column) {
+        mAllSneakers = mRepository.getSortedWithCategoriesId(categoriesId,column);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getSortedWithNewsId(int newsId, String column) {
+        mAllSneakers = mRepository.getSortedWithNewsId(newsId,column);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getByCategoriesId(int id) {
+        mAllSneakers = mRepository.getByCategoriesId(id);
+        return mAllSneakers;
+    }
+
+    public LiveData<List<Sneakers>> getByNewsId(int id) {
+        mAllSneakers = mRepository.getByNewsId(id);
+        return mAllSneakers;
+    }
+
     public LiveData<List<Sneakers>> getAllSneakers() {
         mAllSneakers = mRepository.getAllSneakers();
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getMaleSneakers() {
-        mAllSneakers = mRepository.getMaleSneakers();
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getFemaleSneakers() {
-        mAllSneakers = mRepository.getFemaleSneakers();
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getChildrenSneakers() {
-        mAllSneakers = mRepository.getChildrenSneakers();
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getSportSneakers(int sport) {
-        mAllSneakers = mRepository.getSportSneakers(sport);
         return mAllSneakers;
     }
 
@@ -56,11 +56,6 @@ public class SneakersViewModel extends AndroidViewModel {
 
     public LiveData<List<Sneakers>> getSorted(int gender, boolean child, String column) {
         mAllSneakers = mRepository.getSorted(gender, child, column);
-        return mAllSneakers;
-    }
-
-    public LiveData<List<Sneakers>> getSportSorted(int sport, String column) {
-        mAllSneakers = mRepository.getSportSorted(sport, column);
         return mAllSneakers;
     }
 

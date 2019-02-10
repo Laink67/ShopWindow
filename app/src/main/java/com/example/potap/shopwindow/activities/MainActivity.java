@@ -11,13 +11,9 @@ import android.view.MenuItem;
 
 import com.example.potap.shopwindow.R;
 import com.example.potap.shopwindow.adapter.MainPageAdapter;
-import com.example.potap.shopwindow.adapter.SneakersListAdapter;
-import com.example.potap.shopwindow.viewmodels.SneakersViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SneakersViewModel mSneakersViewModel;
-    private SneakersListAdapter adapter;
     private MainPageAdapter mainPageAdapter;
     TabLayout tabLayout;
     ViewPager viewPager;
