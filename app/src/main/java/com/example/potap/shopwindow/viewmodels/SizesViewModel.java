@@ -13,21 +13,17 @@ import java.util.List;
 public class SizesViewModel extends AndroidViewModel {
 
     private SizesRepository mRepository;
-    private LiveData<List<Sizes>> mAllSizes;
 
     public SizesViewModel(@NonNull Application application) {
         super(application);
         mRepository = SizesRepository.getInstance(application);
-        mAllSizes = mRepository.getAll();
     }
 
     public LiveData<List<Sizes>> getAll() {
-        mAllSizes = mRepository.getAll();
-        return mAllSizes;
+        return mRepository.getAll();
     }
 
     public LiveData<List<Sizes>> getBySneakersId(int id) {
-        mAllSizes = mRepository.getBySneakersId(id);
-        return mAllSizes;
+        return mRepository.getBySneakersId(id);
     }
 }

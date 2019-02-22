@@ -19,7 +19,7 @@ import com.example.potap.shopwindow.interfaces.OrdersDAO;
 import com.example.potap.shopwindow.interfaces.SizesDAO;
 import com.example.potap.shopwindow.interfaces.SneakersDAO;
 
-@Database(entities = {Sneakers.class, Categories.class, News.class, Orders.class, Sizes.class}, version = 11)
+@Database(entities = {Sneakers.class, Categories.class, News.class, Orders.class, Sizes.class}, version = 12)
 public abstract class DataManager extends RoomDatabase {
 
     public abstract SneakersDAO sneakersDAO();

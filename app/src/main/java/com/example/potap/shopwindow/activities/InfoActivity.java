@@ -88,9 +88,13 @@ public class InfoActivity extends AppCompatActivity {
         floatingTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ordersViewModel.insert(getOrder(sneakers));
+                if (sizesAdapter.size != 0.0) {
+                    ordersViewModel.insert(getOrder(sneakers));
 
-                Snackbar.make(radioGroup, "Added to cart", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(radioGroup, "Added to cart", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(radioGroup, "You should select size", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -114,7 +118,7 @@ public class InfoActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.simple_menu, menu);
         return true;
     }
 

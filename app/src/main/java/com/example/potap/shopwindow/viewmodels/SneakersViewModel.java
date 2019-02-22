@@ -12,37 +12,30 @@ import java.util.List;
 public class SneakersViewModel extends AndroidViewModel {
 
     private SneakersRepository mRepository;
-    private LiveData<List<Sneakers>> mAllSneakers;
 
     public SneakersViewModel(Application application) {
         super(application);
         mRepository = SneakersRepository.getInstance(application);
-        mAllSneakers = mRepository.getAllSneakers();
     }
 
     public LiveData<List<Sneakers>> getSortedWithCategoriesId(int categoriesId, String column) {
-        mAllSneakers = mRepository.getSortedWithCategoriesId(categoriesId, column);
-        return mAllSneakers;
+        return mRepository.getSortedWithCategoriesId(categoriesId, column);
     }
 
     public LiveData<List<Sneakers>> getSortedWithNewsId(int newsId, String column) {
-        mAllSneakers = mRepository.getSortedWithNewsId(newsId, column);
-        return mAllSneakers;
+        return mRepository.getSortedWithNewsId(newsId, column);
     }
 
     public LiveData<List<Sneakers>> getByCategoriesId(int id) {
-        mAllSneakers = mRepository.getByCategoriesId(id);
-        return mAllSneakers;
+        return mRepository.getByCategoriesId(id);
     }
 
     public LiveData<List<Sneakers>> getByNewsId(int id) {
-        mAllSneakers = mRepository.getByNewsId(id);
-        return mAllSneakers;
+        return mRepository.getByNewsId(id);
     }
 
     public LiveData<List<Sneakers>> getAllSneakers() {
-        mAllSneakers = mRepository.getAllSneakers();
-        return mAllSneakers;
+        return mRepository.getAllSneakers();
     }
 
     public void insert(Sneakers sneakers) {
@@ -50,18 +43,15 @@ public class SneakersViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Sneakers>> getSorted(String column) {
-        mAllSneakers = mRepository.sort(column);
-        return mAllSneakers;
+        return mRepository.sort(column);
     }
 
     public LiveData<List<Sneakers>> getSorted(int gender, boolean child, String column) {
-        mAllSneakers = mRepository.getSorted(gender, child, column);
-        return mAllSneakers;
+       return mRepository.getSorted(gender, child, column);
     }
 
     public LiveData<List<Sneakers>> search(String searchString) {
-        mAllSneakers = mRepository.search(searchString);
-        return mAllSneakers;
+        return mRepository.search(searchString);
     }
 
 }

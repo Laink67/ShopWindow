@@ -12,17 +12,14 @@ import java.util.List;
 public class NewsViewModel extends AndroidViewModel {
 
     private NewsRepository mRepository;
-    private LiveData<List<News>> mAllNews;
 
     public NewsViewModel(Application application) {
         super(application);
         mRepository = NewsRepository.getInstance(application);
-        mAllNews = mRepository.getAllNews();
     }
 
     public LiveData<List<News>> getAllNews() {
-        mAllNews = mRepository.getAllNews();
-        return mAllNews;
+        return mRepository.getAllNews();
     }
 
     public void insert(News News) {

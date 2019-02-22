@@ -2,7 +2,6 @@ package com.example.potap.shopwindow.interfaces;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import com.example.potap.shopwindow.dbObjects.Sneakers;
@@ -10,7 +9,7 @@ import com.example.potap.shopwindow.dbObjects.Sneakers;
 import java.util.List;
 
 @Dao
-public interface SneakersDAO {
+public interface SneakersDAO extends BaseDAO<Sneakers> {
 
     @Query("SELECT * from Sneakers")
     LiveData<List<Sneakers>> getAll();
@@ -20,9 +19,6 @@ public interface SneakersDAO {
 
     @Query("SELECT * FROM Sneakers WHERE categoriesId = :id")
     LiveData<List<Sneakers>> getByCategoriesId(int id);
-
-    @Insert
-    void insert(Sneakers word);
 
     //SORT
     @Query("SELECT * FROM Sneakers WHERE categoriesId =:id ORDER BY name")
